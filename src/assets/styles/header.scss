@@ -1,0 +1,111 @@
+.niuyin-header {
+  text-align: right;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+
+  /* nav中间部分 */
+  .nav-center {
+    margin: 0;
+
+    .nav-center-search {
+      width: 30vw;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-radius: 1.1rem;
+      border: 2px solid var(--niuyin-text-color);
+
+      .search-input {
+        flex: 1;
+        height: 40px;
+        border: none !important;
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+      }
+
+      .search-btn {
+        width: 80px;
+        height: 40px;
+        border-radius: 0 1rem 1rem 0;
+        margin: 0;
+        padding: 0;
+
+        .icon-search {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  /*nav右侧区域*/
+  .nav-right {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    right: 20px;
+  }
+
+}
+/*搜索框弹出层*/
+.search-pop {
+    .search-hover-item {
+      line-height: 1.8;
+      border-radius: 6px;
+      transition: all .3s ease-in;
+
+      &:hover {
+        background-color: rgba(211, 211, 211, 0.5)
+      }
+    }
+}
+
+.user-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.icon-click:hover {
+  transition: all .3s ease-in;
+  color: black !important;
+  font-weight: 600 !important;
+}
+
+/*用户头像hover弹出层区域*/
+.userinfo-area {
+
+  .userinfo-header {
+
+    .trust-login {
+
+      .trust-login-title {
+
+      }
+    }
+
+  }
+
+  .userinfo-center {
+    margin-top: 20px;
+
+    .icon-style {
+      font-size: 24px;
+    }
+  }
+
+  .userinfo-footer {
+
+  }
+}
+
+@media (max-width: 500px) {
+  .nav-center-search {
+    width: 50vw;
+  }
+}
+

@@ -1,0 +1,498 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-shadow: none;
+  font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Arial, "Hiragino Sans GB", "微软雅黑", sans-serif;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+#app {
+  height: 100%;
+}
+
+.video-card-transition {
+  //background-color: rgba(242, 242, 243, 1);
+  box-shadow: 0 0 1px 0 grey;
+}
+
+a {
+  text-decoration: none
+}
+
+.c211 {
+  color: #d3d3d3;
+}
+
+.bgc211 {
+  background-color: #d3d3d3;
+}
+
+.pr {
+  position: relative;
+}
+
+.pa {
+  position: absolute;
+}
+
+.w100p {
+  width: 100px;
+}
+
+.cbx {
+  box-shadow: rgba(0, 0, 0, 0.2) 0 1.6px 3.6px 0, rgba(0, 0, 0, 0.11) 0 0.3px 0.9px 0;
+}
+
+.mr-5r {
+  margin-right: 0.5rem;
+}
+
+.ml-5r {
+  margin-left: 0.5rem;
+}
+
+.icon-30 {
+  width: 30px;
+  height: 30px;
+}
+
+.icon-36 {
+  width: 36px;
+  height: 36px;
+}
+
+.cw {
+  color: white;
+}
+
+.cg {
+  color: grey;
+}
+
+.cb {
+  color: black;
+}
+
+.cr {
+  color: red;
+}
+
+.fs5 {
+  font-size: 0.5rem;
+}
+
+.fs6 {
+  font-size: 0.6rem;
+}
+
+.fs7 {
+  font-size: 0.7rem;
+}
+
+.fs8 {
+  font-size: 0.8rem;
+}
+
+.fs9 {
+  font-size: 0.9rem;
+}
+
+.fw400 {
+  font-weight: 400;
+}
+
+.fw500 {
+  font-weight: 500;
+}
+
+.fw600 {
+  font-weight: 600;
+}
+
+.mtb5 {
+  margin: 0.5rem 0;
+}
+
+.tcm {
+  color: var(--niuyin-text-color)
+}
+
+.mb5 {
+  margin-bottom: 0.5rem;
+}
+
+.mb1rem {
+  margin-bottom: 1rem;
+}
+
+.mlr5 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.mlr8 {
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
+}
+
+.p5px {
+  padding: 5px;
+}
+
+.p5-10 {
+  padding: 5px 10px;
+}
+
+.p10px {
+  padding: 10px;
+}
+
+.plr10px {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.ptb10px {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.plrb10 {
+  padding: 0 10px 10px 10px;
+}
+
+.p1rem {
+  padding: 1rem;
+}
+
+.w49 {
+  width: 49%;
+}
+
+.w24 {
+  width: 24%;
+}
+
+.w33 {
+  width: 33%;
+}
+
+.mtlrb5 {
+  margin: 0.5rem;
+}
+
+.ml2 {
+  margin-left: 0.2rem;
+}
+
+.aite {
+  cursor: pointer;
+}
+
+.el-skeleton__image {
+  border-radius: 1rem;
+}
+
+.backdrop-filter {
+  backdrop-filter: blur(10px);
+}
+
+.one-line {
+  /* 一行显示 */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.two-line {
+  /* 两行显示 */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.oh {
+  overflow: hidden;
+}
+
+.w50 {
+  width: 50%;
+}
+
+.mw50 {
+  max-width: 100%;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.h100 {
+  height: 100%;
+}
+
+.wh100 {
+  width: 100%;
+  height: 100%;
+}
+
+.fs125 {
+  /*20px*/
+  font-size: 1.25rem;
+}
+
+.fs24px {
+  /*20px*/
+  font-size: 24px;
+}
+
+.wh20 {
+  width: 20px;
+  height: 20px;
+}
+
+.wh32 {
+  width: 32px;
+  height: 32px;
+}
+
+.cp {
+  cursor: pointer;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.flex-start {
+  display: flex;
+  justify-content: start;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-flow: column;
+  /*align-items: center;*/
+  justify-content: center;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-flow: column;
+  flex: 1 1;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dn {
+  display: none;
+}
+
+.tac {
+  text-align: center;
+}
+
+.el-main {
+  padding: 0 0 1rem 0;
+}
+
+.el-upload {
+  width: 100%;
+}
+
+.niuyin-header {
+  .el-input__wrapper {
+    border-radius: 1rem 0 0 1rem;
+  }
+}
+
+.el-input__inner {
+  height: 38px;
+}
+
+.keyword-hint {
+  color: red;
+}
+
+.video-player {
+  .el-carousel__container {
+    height: 100%;
+  }
+}
+
+/*el抽屉drawer*/
+.el-drawer {
+  --el-drawer-bg-color: #000000CC;
+  backdrop-filter: blur(2px);
+}
+
+/*el卡片card*/
+.el-card {
+  //background-color: transparent;
+  border: none;
+}
+
+.el-pagination button {
+  background-color: transparent;
+}
+
+.el-pagination {
+  margin: 0 0 2rem 0;
+  float: right;
+}
+
+.el-tabs {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.el-tabs__item {
+  background-color: transparent !important;
+}
+
+.el-tabs__item.is-active {
+  font-weight: 900;
+}
+
+.el-loading-mask {
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  border-radius: 0.5rem;
+}
+
+.el-dialog {
+  margin: 3vh auto;
+  border-radius: 1rem;
+}
+
+.el-dialog__header {
+  margin: 0;
+  color: black;
+  display: flex;
+  justify-content: space-between
+}
+
+.el-dialog__body {
+  height: 90%;
+  padding: 10px 20px 30px;
+}
+
+.custom-loading-svg {
+  justify-content: center;
+}
+
+.router-is-focus .tab-item {
+  backdrop-filter: blur(10px);
+  background-color: #D3D3D37F;
+  color: black !important;
+  font-weight: 600;
+}
+
+.el-autocomplete {
+  width: 100%;
+}
+
+/*分割线背景色*/
+.el-divider__text {
+  background-color: transparent;
+}
+
+.el-popper {
+  border-radius: 1rem;
+}
+
+.avatar-uploader .el-upload {
+  height: 100%;
+  width: 100%;
+}
+
+/*高德地图页面美化*/
+.amap-sug-result {
+  border-radius: 0.4rem;
+  background-color: #F2F2F37F !important;
+  backdrop-filter: blur(10px);
+  border: none;
+  box-shadow: 0px 1px 1px 0 grey;
+}
+
+.el-vue-search-box-container {
+  background: #F2F2F37F !important;
+  border-radius: 0.5rem !important;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  width: 250px !important;
+
+  & input {
+    background: none;
+  }
+}
+
+.amap-ctrl-icon-layer, .amap-ctrl-list-layer {
+  background-color: #F2F2F37F !important;
+  border-radius: 0.5rem !important;
+  backdrop-filter: blur(10px);
+}
+
+.amap-controls .amap-hawkeye {
+  border-radius: 1rem 0 1rem 0 !important;
+}
+
+.amap-controls .amap-control {
+  background-color: #F2F2F37F !important;
+  border-radius: 0.5rem !important;
+  backdrop-filter: blur(10px);
+}
+
+/*平板适配*/
+@media (max-width: 992px) {
+
+}
+
+/*移动端适配*/
+@media (max-width: 500px) {
+  .video-card {
+    width: 49.5%;
+    height: 160px;
+  }
+}
+
+/*移动端适配*/
+@media (max-width: 500px) {
+  .dn-phone {
+    display: none !important;
+  }
+}
+
+.background-custom {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
