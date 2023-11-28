@@ -13,6 +13,19 @@
       <!-- tab栏区域 -->
       <div class="tabs-area">
         <ul class="tab-top">
+          <li class="tab-top-item">
+            <router-link class="router-link" active-class="router-is-focus" to="/create">
+              <div class="tab-item">
+<!--                <div class="round">-->
+
+<!--                </div>-->
+<!--                <span class="dn-phone">发布作品</span>-->
+                <el-button type="primary" style="" class="w100">下一页<i class="el-icon-arrow-right el-icon--right"></i></el-button>
+              </div>
+            </router-link>
+          </li>
+        </ul>
+        <ul class="tab-top">
           <li class="tab-top-item"
               v-for="(item, i) in tabsTopList"
               :key="i">
@@ -64,15 +77,10 @@ export default {
     return {
       tabsTopList: [
         {id: 1, name: "首页", '--color': "blue", class: "icon-index", link: "/"},
-        {id: 2, name: "热门", '--color': "rgba(0,0,0,1)", class: "icon-hotVideo", link: "/hotVideo",},
-        {id: 3, name: "关注", '--color': "black", class: "icon-follow", link: "/follow"},
-        {id: 4, name: "频道", '--color': "black", class: "icon-channel", link: "/channel",},
-        {id: 5, name: "我的", '--color': "black", class: "icon-erciyuan", link: "/user",},
+        {id: 2, name: "热门视频", '--color': "rgba(0,0,0,1)", class: "icon-hotVideo", link: "/hotVideo",},
       ],
       tabsCenterList: [
         {id: 1, name: "直播", '--color': "red", class: "icon-live", link: "/index"},
-        {id: 2, name: "放映厅", '--color': "black", class: "icon-vs", link: "/hotVideo",},
-        {id: 3, name: "知识", '--color': "black", class: "icon-knowledge", link: "/follow"},
       ],
       tabsBottomList: [
         {id: 1, name: "商务合作", '--color': "red", class: "icon-index", link: "/index"},
@@ -118,10 +126,10 @@ export default {
 .tab-item {
   margin: 1px 1rem;
   display: flex;
-  padding: 0.1rem 0;
+  padding: 0 10px;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   border-radius: 0.5rem;
   transition: all .3s ease-in;
 }

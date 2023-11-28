@@ -9,17 +9,34 @@ html.dark {
   --el-bg-color-page: rgb(37, 38, 50);
   --el-overlay-color-lighter: rgba(0, 0, 0, 0.8); //弹窗遮罩层
   --el-text-color-disabled: rgba(108, 110, 114, 0.3); // el-avatar
+  --el-fill-color-blank: #3c3d3f54;
 
   --niuyin-text-color: #fff;
   --niuyin-bg-color: #000000;
+  --niuyin-bg-color5: rgba(0, 0, 0, 0.5);
+  --niuyin-bg-color3: rgba(0, 0, 0, 0.3);
+  --niuyin-bg-color2: rgba(0, 0, 0, 0.2);
   --niuyin-primary-color: rgb(210, 27, 70);
+  --niuyin-primary-color-hover: rgb(230, 47, 90);
+  --niuyin-upload-bg: #3c3d3f54;
+  --niuyin-custom-bg: rgba(26, 26, 55, 0.8);
+  --niuyin-custom-bg5: rgba(26, 26, 55, 0.5);
+  --niuyin-online-color: #78ce27;
 
 }
 
 :root {
   --niuyin-text-color: #000;
   --niuyin-bg-color: #ffffff;
+  --niuyin-bg-color5: rgba(255, 255, 255, 0.5);
+  --niuyin-bg-color3: rgba(255, 255, 255, 0.3);
+  --niuyin-bg-color2: rgba(255, 255, 255, 0.2);
   --niuyin-primary-color: rgb(17, 72, 210);
+  --niuyin-primary-color-hover: rgb(37, 92, 230);
+  --niuyin-upload-bg: #2e32380d;
+  --niuyin-custom-bg: rgba(242, 242, 243, 0.8);
+  --niuyin-custom-bg5: rgba(242, 242, 243, 0.5);
+  --niuyin-online-color: #78ce27;
 
   --el-color-info: #e2e3e3; /*按钮背景色*/
   --el-input-bg-color: rgb(242, 242, 243);
@@ -41,6 +58,7 @@ html.dark {
   --theme-dark-button-color: var(---primary-blue-color);
   --el-text-color-disabled: rgba(192, 196, 204, 0.3); // el-avatar
 }
+
 
 /*空状态颜色填充*/
 .el-empty {
@@ -183,4 +201,22 @@ html.dark {
 /*消息弹框圆角*/
 .el-message-box {
   --el-messagebox-border-radius: 16px;
+}
+
+.el-header {
+  padding: 0;
+}
+
+.el-button--primary {
+  background-color: var(--niuyin-primary-color);
+  border-color: var(--niuyin-primary-color);
+}
+
+.el-button--primary:focus, .el-button--primary:hover {
+  background-color: var(--niuyin-primary-color-hover);
+  border-color: var(--niuyin-primary-color-hover);
+}
+
+.el-divider--horizontal {
+  margin: 16px 0;
 }
