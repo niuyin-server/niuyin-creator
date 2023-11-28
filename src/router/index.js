@@ -5,10 +5,16 @@ import Index from '@/views/Index.vue'
 Vue.use(VueRouter)
 
 const routes = [
+    {path: "/login", component: () => import("@/views/LoginNew.vue")},
+    {path: "/register", component: () => import("@/views/Register.vue")},
     {
         path: '/',
         name: 'Index',
-        component: Index
+        redirect: '/dashboard',
+        component: Index,
+        children: [
+            {path: "dashboard", component: () => import("@/views/Dashboard.vue")}
+        ],
     },
 ]
 

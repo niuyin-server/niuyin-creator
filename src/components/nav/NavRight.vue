@@ -23,16 +23,6 @@
         </template>
       </el-popover>
       <!-- 网址 -->
-      <router-link class="link-type cp">
-        <div class="flex-column icon-click cg plr10px">
-          <div class="flex-center" style="height: 24px;width: 24px;">
-            <i class="iconfont icon-message fs125"></i>
-          </div>
-          <p>
-            <span class="cg fs7"></span>
-          </p>
-        </div>
-      </router-link>
       <el-popover :width="320" ref="noticePopover" trigger="hover">
         <template #reference>
           <div class="link-type cp" @mousemove="handleNoticeShow" @mouseleave="handleNoticeHide">
@@ -52,10 +42,10 @@
         </template>
       </el-popover>
     </div>
-    <router-link class="user-container" :to="'/user'">
+    <div class="user-container cp">
       <el-avatar v-if="user.avatar" :src="user.avatar"/>
-      <el-avatar v-else icon="el-icon-user-solid"/>
-    </router-link>
+      <el-avatar v-else icon="el-icon-user-solid" @click="handleToLogin"/>
+    </div>
   </div>
 </template>
 
@@ -115,32 +105,6 @@ export default {
         html.classList.add("light")
       }
     },
-
-    // 用户popover的show时间
-    handlePopoverShow() {
-      // 封装用户作品量、喜欢量、收藏量
-      myVideoCount().then(res => {
-        if (res.code === 200) {
-          this.userPostInfo.forEach((item, index) => {
-            return item.id === 1 ? item.num = res.data : 0
-          })
-        }
-      })
-      myLikeCount().then(res => {
-        if (res.code === 200) {
-          this.userPostInfo.forEach((item, index) => {
-            return item.id === 2 ? item.num = res.data : 0
-          })
-        }
-      })
-      myFavoriteCount().then(res => {
-        if (res.code === 200) {
-          this.userPostInfo.forEach((item, index) => {
-            return item.id === 3 ? item.num = res.data : 0
-          })
-        }
-      })
-    },
     // 退出登录
     handleLogout() {
       tokenX().removeToken()
@@ -176,7 +140,10 @@ export default {
     // 接收子事件
     emitNoticeRefresh() {
       // this.initNotice()
-    }
+    },
+    handleToLogin() {
+      this.$router.push("login")
+    },
   }
 }
 </script>

@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import "@/assets/fonts/font.scss"
 import "@/assets/styles/element.scss"
 import "@/assets/styles/style.scss"
 import { createPinia, PiniaVuePlugin } from 'pinia'

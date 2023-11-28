@@ -17,7 +17,6 @@ import {userInfoX} from "@/store/userInfoX";
 
 export default {
   name: "Header",
-  computed: {},
   components: {NavCenter, NavRight},
   props: {},
   data() {
@@ -26,7 +25,7 @@ export default {
     }
   },
   created() {
-    // this.getUserInfo()
+    this.getUserInfo()
   },
   emits: ['themeChangeEmit'],
   methods: {

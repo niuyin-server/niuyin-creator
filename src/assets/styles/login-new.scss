@@ -10,31 +10,29 @@ $tabW: math.div($formW, 2);
 $rowH: 56;
 $buttonH: 50;
 
-// container
 $containerBgColor: #e0e4eb;
 $containerBgImage: "@/assets/images/index-bg.png";
-// container-logo
+
 $logoWidth: 600px;
 $logoHeight: 100px;
-$logoImage: "../logo/login-niuyin.png";
-// container-content
+$logoImage: "@/assets/logo/logo-niuyin.png";
+
 $contentWidth: round(math.div($W , $H) * 100) * 1vw;
 $contentHeight: math.div( round(math.div($picH , $W) * 100) , 100) * $contentWidth;
 $contentBgColor: #ffffff;
-// container-content-pic
+
 $picWidth: round(math.div($picW , $H )* 100) * 1vw;
 $picHeight: inherit;
 $picImage: "@/assets/images/login.png";
-// container-content-field
+
 $fieldWidth: $contentWidth - $picWidth;
 $fieldHeight: inherit;
-// container-content-field-form
+
 $formWidth: $formW * 1px;
 $tabWidth: $tabW * 1px;
 $rowHeight: $rowH * 1px;
 $buttonHeight: $buttonH * 1px;
 
-// - - - - - 页面基础设置
 .container {
   .login-code {
     width: 33%;
@@ -50,27 +48,24 @@ $buttonHeight: $buttonH * 1px;
     }
   }
 
-  // 元素
   width: inherit;
   height: inherit;
   min-width: 1080px;
   min-height: 620px;
   background-color: $containerBgColor;
-  background-image: url($containerBgImage);
+  background-image: url("@/assets/images/index-bg.png");
   background-size: cover;
-  // 定位
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  // 文字
   font-size: 14px;
   font-weight: 600;
 
   .logo {
     width: $logoWidth;
     height: $logoHeight;
-    background-image: url($logoImage);
+    background-image: url("@/assets/logo/logo-niuyin.png");
     background-size: contain;
     position: absolute;
     top: 50px;
@@ -89,7 +84,7 @@ $buttonHeight: $buttonH * 1px;
     .pic {
       width: $picWidth;
       height: $picHeight;
-      background-image: url($picImage);
+      background-image: url("@/assets/images/login.png");
       background-repeat: no-repeat;
       background-size: cover;
       border-radius: 2rem 0 0 2rem;
@@ -123,17 +118,14 @@ $buttonHeight: $buttonH * 1px;
         box-sizing: border-box;
         width: $formWidth;
 
-        // - - - tab
         :deep(.el-tabs__content) {
           padding: 20px 0 0;
         }
 
         :deep(.el-tabs__item) {
-          // 元素
           width: $tabWidth;
           height: $rowHeight;
           padding: 0;
-          // 文字
           line-height: $rowHeight;
           color: #666666;
         }
@@ -148,15 +140,12 @@ $buttonHeight: $buttonH * 1px;
           border-radius: 2px;
         }
 
-        // - - - input
         :deep(.el-input__inner) {
-          // 元素
           width: 100%;
           height: $rowHeight;
           background: #f5f5f5;
           border: 0;
           border-radius: 28px;
-          // 文字
           text-align: center;
           line-height: 19px;
           color: #262626;
@@ -164,31 +153,26 @@ $buttonHeight: $buttonH * 1px;
 
         .code:deep(.el-input__inner) {
           padding: 0 24px;
-          // 文字
           text-align: left;
         }
 
         :deep(.el-input__inner::-webkit-input-placeholder) {
-          /* WebKit browsers */
           font-weight: 400;
           color: #8c8c8c;
         }
 
         :deep(.el-input__inner:-moz-placeholder) {
-          /* Mozilla Firefox 4 to 18 */
           font-weight: 400;
           color: #8c8c8c;
         }
 
         :deep(.el-input__inner::-moz-placeholder) {
-          /* Mozilla Firefox 19+ */
           font-weight: 400;
           color: #8c8c8c;
           opacity: 1;
         }
 
         :deep(.el-input__inner:-ms-input-placeholder) {
-          /* Internet Explorer 10+ */
           font-weight: 400;
           color: #8c8c8c !important;
         }
@@ -197,18 +181,14 @@ $buttonHeight: $buttonH * 1px;
           position: relative;
 
           .button-code {
-            // 元素
             height: $rowHeight;
             box-sizing: border-box;
-            // 定位
             position: absolute;
             top: 0;
             right: 20px;
             z-index: 1;
-            // 文字
             line-height: 20px;
             font-size: 14px;
-            font-family: PingFang SC;
             font-weight: 400;
             color: #2f53eb;
 
@@ -230,7 +210,6 @@ $buttonHeight: $buttonH * 1px;
           border: 0;
           border-radius: 24px;
           margin-bottom: 20px;
-          // 文字
           line-height: 26px;
           font-size: 20px;
           color: #ffffff;
@@ -238,19 +217,17 @@ $buttonHeight: $buttonH * 1px;
 
         .button-active {
           background: #2f53eb;
-          box-shadow: 0px 2px 8px rgba(0, 80, 184, 0.2);
+          box-shadow: 0 2px 8px rgba(0, 80, 184, 0.2);
         }
       }
     }
   }
 
   .footer {
-    // 元素
     height: 16px;
     line-height: 16px;
     font-size: 12px;
     color: #8c8c8c;
-    // 定位
     position: absolute;
     bottom: 30px;
 
@@ -263,7 +240,6 @@ $buttonHeight: $buttonH * 1px;
   }
 }
 
-// - - - - - PC 最小尺寸设置
 @media screen and (min-width: 599px) and (max-width: 1366px) {
   .container {
     .content {
@@ -295,7 +271,6 @@ $buttonHeight: $buttonH * 1px;
   }
 }
 
-/* ===== MOBILE DESIGN ===== */
 $mobileW: 375;
 $mobileH: 812;
 $mobileContentW: 327;
@@ -304,36 +279,27 @@ $mobileFormW: 280;
 $mobileRowH: 48;
 $mobileButtonH: 48;
 
-// container
-$mobileContainerBgImage: "../assets/images/bg-mobile.png";
-// container-content
+$mobileContainerBgImage: "@/assets/images/bg-mobile.png";
 $mobileContentWidth: round(math.div($mobileContentW , $mobileW)* 100) * 1vw;
 $mobileContentHeight: math.div(round(math.div($mobileContentH , $mobileW) * 100),  100) * $mobileContentWidth;
-// container-content-field-form
 $mobileFormWidth: round(math.div($mobileFormW , $mobileW) * 100) * 1vw;
 $mobileRowHeight: $mobileRowH * 1px;
 $mobileButtonHeight: $mobileButtonH * 1px;
-$iconBgImage: "../assets/images/icon.png";
+$iconBgImage: "@/assets/images/icon.png";
 
-// - - - - - 移动端设置
 @media screen and (max-width: 599px) {
   .container {
-    // 元素
-    background-image: url($mobileContainerBgImage);
+    background-image: url("@/assets/images/bg-mobile.png");
     min-width: 280px;
     min-height: 568px;
-    // 文字
     font-size: 16px;
-    font-family: PingFang SC;
     font-weight: bold;
 
     .content {
-      // 元素
       width: $mobileContentWidth;
       height: $mobileContentHeight;
       min-width: 250px;
       min-height: 350px;
-      // 定位
       display: flex;
       justify-content: center;
       align-items: center;
@@ -343,16 +309,13 @@ $iconBgImage: "../assets/images/icon.png";
       }
 
       .field {
-        // 元素
         width: inherit;
         min-height: inherit;
-        // 定位
         left: 0;
         display: flex;
         flex-direction: column;
 
         .mobile-title {
-          // 元素
           margin: 0 0 20px;
           display: block;
         }
@@ -360,7 +323,6 @@ $iconBgImage: "../assets/images/icon.png";
         .form {
           width: $mobileFormWidth;
 
-          // - - - tab
           :deep(.el-tabs__header) {
             display: none;
           }
@@ -369,18 +331,15 @@ $iconBgImage: "../assets/images/icon.png";
             padding: 0;
           }
 
-          // - - - input
           :deep(.el-input__inner) {
             height: $mobileRowHeight;
             line-height: 24px;
-            // 文字
             text-align: center;
             color: #262626;
           }
 
           :deep(.el-form-item) {
             .button-code {
-              // 元素
               height: $mobileRowHeight;
             }
           }
@@ -404,7 +363,6 @@ $iconBgImage: "../assets/images/icon.png";
             width: 16px;
             height: 16px;
             display: inline-block;
-            background-image: url($iconBgImage);
             background-size: cover;
           }
         }
@@ -416,13 +374,11 @@ $iconBgImage: "../assets/images/icon.png";
     }
 
     .footer {
-      // 元素
       font-size: 12px;
       font-weight: 600;
       line-height: 16px;
       color: #686868;
       opacity: 0.8;
-      // 定位
       position: absolute;
       bottom: 20px;
     }

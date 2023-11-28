@@ -46,7 +46,6 @@ export function getPersonInfo(userId) {
     })
 }
 
-
 // 退出方法
 export function logout() {
     return request({
@@ -54,7 +53,6 @@ export function logout() {
         method: 'post'
     })
 }
-
 
 //更新用户信息
 export function updateUserProfile(data) {

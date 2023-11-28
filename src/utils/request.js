@@ -1,6 +1,7 @@
 import axios from 'axios'
 import errorCode from '@/utils/errorCode'
 import {getToken} from "@/utils/auth.js";
+import {MessageBox} from "element-ui";
 
 const instance = axios.create({
     baseURL: "http://localhost:9090",
@@ -33,13 +34,15 @@ instance.interceptors.response.use(res => {
         // 展示重新登陆逻辑
         if (loginDialog) {
             loginDialog = false
-            // ElMessageBox.confirm('登录状态已过期，是否选择重新登录', '提示', {
-            //     confirmButtonText: '重新登录', cancelButtonText: '取消', type: 'warning'
-            // }).then(() => {
-            //     location.href = '/login';
-            // }).catch(() => {
-            //     loginDialog = true
-            // });
+            MessageBox.confirm('登录状态已过期，请重新登录', '系统提示', {
+                confirmButtonText: '重新登录',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                location.href = '/login';
+            }).catch(() => {
+                loginDialog = true
+            });
             return Promise.reject('请重新登录。')
         }
     } else if (code === 500) {
