@@ -1,5 +1,4 @@
 
-
 html {
   height: 100%;
 }
@@ -176,7 +175,7 @@ a {
 }
 
 .w33 {
-  width: 33%;
+  width: 33.33333%;
 }
 
 .mtlrb5 {
@@ -250,14 +249,29 @@ a {
   font-size: 24px;
 }
 
-.wh20 {
+.wh20px {
   width: 20px;
   height: 20px;
 }
 
-.wh32 {
+.wh24px {
+  width: 24px;
+  height: 24px;
+}
+
+.wh32px {
   width: 32px;
   height: 32px;
+}
+
+.wh64px {
+  width: 64px;
+  height: 64px;
+}
+
+.wh80px {
+  width: 80px;
+  height: 80px;
 }
 
 .cp {
@@ -282,6 +296,12 @@ a {
   display: flex;
   justify-content: start;
   flex-flow: row wrap;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -315,7 +335,7 @@ a {
 }
 
 .el-main {
-  padding: 0 0 1rem 0;
+  padding: 0 1rem;
 }
 
 .el-upload {
@@ -490,3 +510,69 @@ a {
   background-position: center;
   background-size: cover;
 }
+
+.divide:after {
+  border-left: 2px solid var(--niuyin-text-color);
+  content: "";
+  margin: 0 5px;
+}
+
+.divide-grey:after {
+  border-left: 2px solid grey;
+  content: "";
+  margin: 0 10px;
+}
+
+.upload-bg {
+  background-color: var(--niuyin-upload-bg)
+}
+
+.b-radius5 {
+  border-radius: 0.5rem;
+}
+
+.b-radius1 {
+  border-radius: 1rem;
+}
+
+.grid-3-1 {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 3fr 1fr;
+}
+
+.grid-1-3 {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr 3fr;
+}
+
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+
+.icon32 {
+  width: 32px;
+  height: 32px;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.icon64 {
+  width: 64px;
+  height: 64px;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.df {
+  display: flex;
+}
+

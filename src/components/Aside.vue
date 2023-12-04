@@ -5,7 +5,7 @@
       <!-- logo -->
       <div class="oh w100"
            style="overflow:hidden;height: 60px;position:sticky;top: 0;left: 0;z-index: 100;backdrop-filter: blur(10px)">
-        <router-link class="link-type flex-center wh100" :to="'/'">
+        <router-link class="link-type flex-center wh100" to="/">
           <img style="width: 32px;height: 32px;display: inline-block" src="@/assets/logo/logo-niuyin-new.png">
           <span class="dn-phone" style="display:inline-block;line-height: 60px;height: 60px">{{ siteTitle }}</span>
         </router-link>
@@ -13,71 +13,53 @@
       <!-- tab栏区域 -->
       <div class="tabs-area">
         <div class="tab-publish flex-center">
-          <router-link class="router-link-div" active-class="router-is-focus" to="/create" tag="div">
+          <router-link class="router-link-div" active-class="router-is-focus" to="/publish" tag="div">
             <div class="tab-item-btn">
               <el-button type="primary" class="w100">
-                <i class="iconfont icon-publish"/>
-                <span class="dn-phone mlr5 fs8 fw600">发布作品</span>
-                <i class="el-icon-arrow-right el-icon-caret-bottom"/>
+                <div class="flex-center">
+                  <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-publish"></use>
+                  </svg>
+                  <span class="dn-phone mlr5 fs9 fw600">发布作品</span>
+                  <i class="el-icon-arrow-right el-icon-caret-bottom"/></div>
               </el-button>
             </div>
           </router-link>
         </div>
-        <ul class="tab-top">
-          <li class="tab-top-item"
-              v-for="(item, i) in tabsTopList"
-              :key="i">
-            <router-link class="router-link cp"
-                         active-class="router-is-focus"
-                         tag="div"
-                         :to="item.link">
-              <div class="tab-item">
-                <div class="round">
-                  <i class="iconfont" :class="item.class" :style="item"></i>
+        <el-menu class="el-menu-vertical"
+                 default-active="/"
+                 router
+                 @open="handleOpen"
+                 @close="handleClose"
+                 @select="handleSelect">
+          <div v-for="item in menuList" :key="item.id">
+            <div v-if="item.link">
+              <el-menu-item :index="item.link">
+                <div class="flex-start">
+                  <svg class="icon mr-5r" aria-hidden="true">
+                    <use xlink:href="#icon-notice"></use>
+                  </svg>
+                  <span slot="title">{{ item.name }}</span></div>
+              </el-menu-item>
+            </div>
+            <div v-else>
+              <el-submenu :index="item.id+''">
+                <template slot="title">
+                  <div class="flex-start">
+                    <svg class="icon mr-5r" aria-hidden="true">
+                      <use xlink:href="#icon-notice"></use>
+                    </svg>
+                    <span>{{ item.name }}</span></div>
+                </template>
+                <div v-for="ite in item.child" :key="ite.id">
+                  <el-menu-item :index="ite.link">{{ ite.name }}</el-menu-item>
                 </div>
-                <span class="dn-phone">{{ item.name }}</span>
-              </div>
-            </router-link>
-          </li>
-        </ul>
+              </el-submenu>
+            </div>
+          </div>
+        </el-menu>
         <!-- 分隔符 -->
-        <el-divider/>
-        <ul class="tab-center">
-          <li class="tab-center-item"
-              v-for="(item, i) in tabsCenterList"
-              :key="i">
-            <router-link class="router-link cp"
-                         active-class="router-is-focus"
-                         tag="div"
-                         :to="item.link">
-              <div class="tab-item">
-                <div class="round">
-                  <i class="iconfont" :class="item.class" :style="item"></i>
-                </div>
-                <span class="dn-phone">{{ item.name }}</span>
-              </div>
-            </router-link>
-          </li>
-        </ul>
-        <!-- 分隔符 -->
-        <el-divider/>
-        <ul class="tab-center">
-          <li class="tab-center-item"
-              v-for="(item, i) in tabsBottomList"
-              :key="i">
-            <router-link class="router-link cp"
-                         active-class="router-is-focus"
-                         tag="div"
-                         :to="item.link">
-              <div class="tab-item">
-                <div class="round">
-                  <i class="iconfont" :class="item.class" :style="item"></i>
-                </div>
-                <span class="dn-phone">{{ item.name }}</span>
-              </div>
-            </router-link>
-          </li>
-        </ul>
+        <!--        <el-divider/>-->
       </div>
     </div>
   </el-aside>
@@ -92,31 +74,39 @@ export default {
   },
   data() {
     return {
-      tabsTopList: [
-        {id: 1, name: "首页", '--color': "blue", class: "icon-index", link: "/"},
-      ],
-      tabsCenterList: [
+      menuList: [
+        {id: 0, name: "首页", class: "icon-index", link: "/"},
         {
-          id: 1, name: "内容管理", '--color': "rgba(0,0,0,1)", class: "icon-hotVideo", link: "/",
+          id: 1, name: "内容管理", class: "icon-hotVideo",
           child: [
-            {id: 11, name: "作品管理", '--color': "rgba(0,0,0,1)", class: "icon-hotVideo", link: "/"},
-            {id: 11, name: "合集管理", '--color': "rgba(0,0,0,1)", class: "icon-hotVideo", link: "/"},
+            {id: 11, name: "作品管理", class: "icon-hotVideo", link: "/content/post"},
+            {id: 12, name: "合集管理", class: "icon-hotVideo", link: "/content/compilation"},
           ]
         },
         {
-          id: 2, name: "互动管理", '--color': "red", class: "icon-live", link: "/",
+          id: 2, name: "互动管理", class: "icon-live",
           child: [
-            {id: 11, name: "关注管理", '--color': "rgba(0,0,0,1)", class: "icon-hotVideo", link: "/"},
-            {id: 11, name: "粉丝管理", '--color': "rgba(0,0,0,1)", class: "icon-hotVideo", link: "/"},
+            {id: 21, name: "关注管理", class: "icon-hotVideo", link: "/interact/follow"},
+            {id: 22, name: "粉丝管理", class: "icon-hotVideo", link: "/interact/fans"},
           ]
         },
       ],
       tabsBottomList: [
-        {id: 1, name: "商务合作", '--color': "red", class: "icon-index", link: "/index"},
+        {id: 1, name: "商务合作", class: "icon-index", link: "/index"},
       ],
     }
   },
-  methods: {}
+  methods: {
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    handleSelect(index) {
+      // console.log(this.$router.options.routes)
+    }
+  }
 }
 </script>
 

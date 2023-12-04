@@ -2,13 +2,15 @@
   <div class="nav-right">
     <div class="flex-center dn-phone">
       <!--通知-->
-      <el-popover :width="320" ref="noticePopover" trigger="hover">
+      <el-popover :width="300" ref="noticePopover" trigger="hover">
         <template #reference>
           <div class="link-type cp" @mousemove="handleNoticeShow" @mouseleave="handleNoticeHide">
             <div class="flex-column icon-click cg plr10px">
               <el-badge :value="noticeCount" class="item">
-                <div style="height: 20px; justify-content: center; width: 20px;">
-                  <i class="iconfont icon-notice" style="font-size: 20px"></i>
+                <div class="wh24px flex-center">
+                  <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-notice"></use>
+                  </svg>
                 </div>
               </el-badge>
               <p>
@@ -23,12 +25,14 @@
         </template>
       </el-popover>
       <!-- 网址 -->
-      <el-popover :width="320" ref="noticePopover" trigger="hover">
+      <el-popover :width="200" ref="noticePopover" trigger="hover">
         <template #reference>
           <div class="link-type cp" @mousemove="handleNoticeShow" @mouseleave="handleNoticeHide">
             <div class="flex-column icon-click cg plr10px">
-              <div class="flex-center" style="height: 24px; width: 24px;">
-                <i class="iconfont icon-link fs125"></i>
+              <div class="wh24px flex-center">
+                <svg class="icon" aria-hidden="true">
+                  <use xlink:href="#icon-link"></use>
+                </svg>
               </div>
               <p>
                 <span class="cg fs7">网址</span>
@@ -42,9 +46,9 @@
         </template>
       </el-popover>
     </div>
-    <div class="user-container cp">
-      <el-avatar v-if="user.avatar" :src="user.avatar"/>
-      <el-avatar v-else icon="el-icon-user-solid" @click="handleToLogin"/>
+    <div class="user-container">
+      <el-avatar class="cp" v-if="user.avatar" :src="user.avatar"/>
+      <el-avatar class="cp" v-else icon="el-icon-user-solid" @click="handleToLogin"/>
     </div>
   </div>
 </template>

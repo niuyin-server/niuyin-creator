@@ -43,7 +43,7 @@ instance.interceptors.response.use(res => {
             }).catch(() => {
                 loginDialog = true
             });
-            return Promise.reject('请重新登录。')
+            return Promise.reject(msg)
         }
     } else if (code === 500) {
         this.$message(msg)

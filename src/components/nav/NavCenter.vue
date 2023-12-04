@@ -1,6 +1,7 @@
 <template>
+  <!--    中间导航栏-->
   <div class="nav-center">
-    中间导航栏
+<!--    中间导航栏-->
   </div>
 </template>
 
