@@ -243,6 +243,11 @@ html.dark {
   font-weight: 600;
 }
 
+.el-submenu__title:hover {
+  font-weight: 900;
+  background-color: transparent !important;
+}
+
 .el-menu-item.is-active {
   color: var(--niuyin-primary-color-hover);
   font-weight: 900;
@@ -296,4 +301,20 @@ html.dark {
   border: 1px dashed #bebdbd;
   border-radius: 12px;
   width: 100%;
+}
+
+.el-calendar__title {
+  font-size: 0.8rem;
+}
+
+.el-calendar-table .el-calendar-day {
+  height: fit-content;
+}
+
+.el-calendar__header {
+  padding: 8px 16px;
+}
+
+.el-calendar__body {
+  padding: 8px 8px 16px;
 }

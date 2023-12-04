@@ -15,9 +15,7 @@
                    :on-progress="uploadVideoProcess"
                    v-model:file-list="imageFileList"
                    list-type="picture">
-          <el-icon :size="60" :color="'var(--niuyin-primary-color)'">
-            <upload-filled/>
-          </el-icon>
+          <i class="el-icon-upload"></i>
           <div class="el-upload__text">
             <div class="mtb5 fw600"><em>点击上传 或 将图片拖拽入此区域</em></div>
             <p class="cg fs8">最多支持上传<span>{{ imageLimit }}</span>张图片，图片格式不支持gif格式</p>

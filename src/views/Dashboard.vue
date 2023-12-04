@@ -47,7 +47,7 @@
             <h4 class="mb5">新的创作</h4>
             <div class="flex-between">
               <div class="w33 plr10px cp">
-                <router-link to="/" tag="div">
+                <router-link to="/publish" tag="div">
                   <div class="upload-bg p1rem b-radius5 df">
                     <div class="flex-center">
                       <svg class="icon32" aria-hidden="true">
@@ -62,7 +62,7 @@
                 </router-link>
               </div>
               <div class="w33 plr10px cp">
-                <router-link to="/" tag="div">
+                <router-link to="/publish" tag="div">
                   <div class="upload-bg p1rem b-radius5 df">
                     <div class="flex-center">
                       <svg class="icon32" aria-hidden="true">
@@ -77,7 +77,7 @@
                 </router-link>
               </div>
               <div class="w33 plr10px cp">
-                <router-link to="/" tag="div">
+                <router-link to="/publish" tag="div">
                   <div class="upload-bg p1rem b-radius5 df">
                     <div class="flex-center">
                       <svg class="icon32" aria-hidden="true">
@@ -104,7 +104,7 @@
                   <span>（每天10点更新）</span>
                 </div>
               </div>
-              <div class="fs8 cp">查看更多 ></div>
+              <div class="fs8 cp cg">查看更多 ></div>
             </div>
             <div class="grid-1-3">
               <div>
@@ -130,12 +130,32 @@
         </div>
         <div>
           <!--           创作者平台广告位招租轮播图-->
-          <el-card>
-            <el-carousel trigger="click" height="150px">
-              <el-carousel-item v-for="item in 4" :key="item">
-                <h3 class="small">{{ item }}</h3>
-              </el-carousel-item>
-            </el-carousel>
+          <el-card class="mb1rem">
+            <div class="mb5">
+              <el-carousel trigger="click" height="150px">
+                <el-carousel-item v-for="item in 4" :key="item">
+                  <h3 class="small">{{ item }}</h3>
+                </el-carousel-item>
+              </el-carousel>
+            </div>
+            <div class="one-line fs8 fw500">牛音创作服务平台·致力于全面的服务</div>
+          </el-card>
+          <!--          活动中心-->
+          <el-card class="mb1rem">
+            <div class="flex-between mb5">
+              <h4>活动中心</h4>
+              <span class="fs8 cp cg">查看更多 ></span>
+            </div>
+            <el-calendar>
+              <!-- 这里使用的是 2.5 slot 语法，对于新项目请使用 2.6 slot 语法-->
+              <template
+                  slot="dateCell"
+                  slot-scope="{date, data}">
+                <p :class="data.isSelected ? 'is-selected' : ''">
+                  {{ data.day.split('-').slice(1)[1] }} {{ data.isSelected ? '✔️' : '' }}
+                </p>
+              </template>
+            </el-calendar>
           </el-card>
         </div>
       </div>

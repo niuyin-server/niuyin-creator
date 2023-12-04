@@ -37,7 +37,7 @@
               <el-menu-item :index="item.link">
                 <div class="flex-start">
                   <svg class="icon mr-5r" aria-hidden="true">
-                    <use xlink:href="#icon-notice"></use>
+                    <use :xlink:href="item.class"></use>
                   </svg>
                   <span slot="title">{{ item.name }}</span></div>
               </el-menu-item>
@@ -47,12 +47,18 @@
                 <template slot="title">
                   <div class="flex-start">
                     <svg class="icon mr-5r" aria-hidden="true">
-                      <use xlink:href="#icon-notice"></use>
+                      <use :xlink:href="item.class"></use>
                     </svg>
                     <span>{{ item.name }}</span></div>
                 </template>
                 <div v-for="ite in item.child" :key="ite.id">
-                  <el-menu-item :index="ite.link">{{ ite.name }}</el-menu-item>
+                  <el-menu-item :index="ite.link">
+                    <div class="flex-start">
+                      <svg class="icon mr-5r" aria-hidden="true">
+                        <use :xlink:href="ite.class"></use>
+                      </svg>
+                      <span slot="title">{{ ite.name }}</span></div>
+                  </el-menu-item>
                 </div>
               </el-submenu>
             </div>
@@ -75,19 +81,19 @@ export default {
   data() {
     return {
       menuList: [
-        {id: 0, name: "首页", class: "icon-index", link: "/"},
+        {id: 0, name: "首页", class: "#icon-index", link: "/"},
         {
-          id: 1, name: "内容管理", class: "icon-hotVideo",
+          id: 1, name: "内容管理", class: "#icon-content",
           child: [
-            {id: 11, name: "作品管理", class: "icon-hotVideo", link: "/content/post"},
-            {id: 12, name: "合集管理", class: "icon-hotVideo", link: "/content/compilation"},
+            {id: 11, name: "作品管理", class: "#icon-post-video", link: "/content/post"},
+            {id: 12, name: "合集管理", class: "#icon-content-compilation", link: "/content/compilation"},
           ]
         },
         {
-          id: 2, name: "互动管理", class: "icon-live",
+          id: 2, name: "互动管理", class: "#icon-interact",
           child: [
-            {id: 21, name: "关注管理", class: "icon-hotVideo", link: "/interact/follow"},
-            {id: 22, name: "粉丝管理", class: "icon-hotVideo", link: "/interact/fans"},
+            {id: 21, name: "关注管理", class: "#icon-attention", link: "/interact/follow"},
+            {id: 22, name: "粉丝管理", class: "#icon-fans", link: "/interact/fans"},
           ]
         },
       ],

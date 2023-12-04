@@ -21,7 +21,7 @@
               ></video>
               <div v-else-if="videoForm.videoUrl === '' && videoFlag === false"
                    class="el-icon-plus video-uploader-icon">
-                <Plus style="width: 1em; height: 1em;"/>
+                <i class="el-icon-upload"></i>
               </div>
               <el-progress v-if="videoFlag === true"
                            type="circle"
@@ -31,7 +31,7 @@
             </el-upload>
           </el-form-item>
           <el-form-item label="视频封面" prop="coverImage" v-if="videoForm.coverImage">
-            <div v-viewer>
+            <div>
               <img v-if="videoForm.videoUrl !== '' && videoFlag === false"
                    :src="videoForm.coverImage"
                    class="video" alt=""/>

@@ -53,10 +53,8 @@
               :limit="1"
               :on-success="handleCoverImageSuccess"
               :before-upload="beforeCoverImagerUpload">
-            <img v-if="videoForm.coverImage" :src="videoForm.coverImage" class="avatar"/>
-            <el-icon v-else class="avatar-uploader-icon">
-              <Plus/>
-            </el-icon>
+            <img v-if="videoForm.coverImage" :src="videoForm.coverImage" class="avatar" alt=""/>
+            <i v-else class="uploader-icon el-icon-plus"></i>
           </el-upload>
           <p class="cg fs7">提示：优质的封面会极大增加同城曝光，</p>
         </div>
@@ -76,9 +74,7 @@
                      :on-progress="uploadVideoProcess"
                      :on-preview="handlePictureCardPreview"
                      :on-remove="handleRemove">
-            <el-icon :size="60" :color="'var(--niuyin-primary-color)'">
-              <upload-filled/>
-            </el-icon>
+            <i class="el-icon-upload"></i>
             <div class="el-upload__text">
               <div class="mtb5 fw600"><em>点击上传 或 将图片拖拽入此区域</em></div>
               <p class="cg fs8">最多支持上传<span>{{ imageLimit }}</span>张图片，图片格式不支持gif格式</p>
@@ -489,6 +485,20 @@ export default {
 }
 
 .cover-uploader {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  .uploader-icon{
+    font-size: 28px;
+    color: #8c939d;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+  }
 
   & img {
     width: 100px;
