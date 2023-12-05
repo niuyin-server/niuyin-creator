@@ -8,3 +8,12 @@ export function videoPage(data) {
         data: data
     })
 }
+
+// 合集分页
+export function videoCompilationPage(data) {
+    return request({
+        url: '/creator/api/v1/videoCompilationPage',
+        method: 'post',
+        data: data
+    })
+}

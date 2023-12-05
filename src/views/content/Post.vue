@@ -4,7 +4,7 @@
     <!-- 搜索 -->
     <el-form :model="videoPageDTO" ref="queryForm" size="small" :inline="true">
       <el-form-item label="视频标题" prop="videoTitle">
-        <el-input v-model="videoPageDTO.videoTitle" placeholder="请输入视频标题" clearable style="width: 200px" clean
+        <el-input v-model="videoPageDTO.videoTitle" placeholder="请输入视频标题" clearable style="width: 200px"
                   @keyup.enter.native="handleQuery"/>
       </el-form-item>
       <el-form-item>
@@ -14,7 +14,7 @@
     </el-form>
     <!-- 数据 -->
     <el-table v-loading="loading" :data="videoPageList">
-      <el-table-column label="视频封面" width="150" align="center">
+      <el-table-column label="视频封面" width="160" align="center">
         <template slot-scope="scope">
           <el-image style="height: 80px;border-radius: 8px;" lazy :src="scope.row.coverImage"
                     :fit="fit"></el-image>

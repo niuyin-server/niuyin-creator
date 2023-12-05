@@ -31,12 +31,14 @@ export default {
   methods: {
     // 获取用户信息
     getUserInfo() {
-      getInfo().then(res => {
-        if (res.code === 200) {
-          this.user = res.data
-          userInfoX().setUserInfo(res.data)
-        }
-      })
+      if (this.user === null) {
+        getInfo().then(res => {
+          if (res.code === 200) {
+            this.user = res.data
+            userInfoX().setUserInfo(res.data)
+          }
+        })
+      }
     },
     // 换肤事件
     emitDarkChange(dark) {
