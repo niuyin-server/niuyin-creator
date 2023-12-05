@@ -13,7 +13,7 @@
             <div class="username pr">
               <div class="divide-grey">
                 <span class="fs9 fw600">{{ user.nickName }}</span>
-                <span class="fs8" style="margin-left: 32px">发起授权</span></div>
+                <span class="fs8 link-gold ml2rem">发起授权</span></div>
               <div class="divide-grey">
                 <span class="fs8">牛音号：</span>
                 <span class="fs8">{{ user.userId }}</span>
@@ -209,6 +209,10 @@ export default {
 
 <style scoped>
 @import "@/assets/styles/user.scss";
+
+.dashboard-container{
+  padding: 0 1rem;
+}
 
 .el-carousel__item h3 {
   color: #475669;

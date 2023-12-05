@@ -186,6 +186,22 @@ a {
   margin-left: 0.2rem;
 }
 
+.ml1rem {
+  margin-left: 1rem;
+}
+
+.mr1rem {
+  margin-right: 1rem;
+}
+
+.ml2rem {
+  margin-left: 2rem;
+}
+
+.mr2rem {
+  margin-right: 2rem;
+}
+
 .aite {
   cursor: pointer;
 }
@@ -335,7 +351,7 @@ a {
 }
 
 .el-main {
-  padding: 0 1rem;
+  padding: 0;
 }
 
 .el-upload {
@@ -583,7 +599,7 @@ div,
   // 滚动条整体部分
   &::-webkit-scrollbar {
     cursor: pointer;
-    width: 5px;
+    width: 6px;
     height: 1px;
   }
 
@@ -608,4 +624,10 @@ div,
   &::-webkit-resizer {
     display: none;
   }
+}
+
+.link-gold {
+  color: gold;
+  cursor: pointer;
+  font-weight: 500;
 }
