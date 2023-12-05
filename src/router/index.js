@@ -27,15 +27,16 @@ const routes = [
 
         ],
     },
-    // 内容管理
-    // {
-    //     path: '/content',
-    //     name: 'Content',
-    //     children: [
-    //
-    //     ],
-    // },
-    // 互动管理
+    {
+        path: '/404',
+        component: () => import('@/views/error/404.vue'),
+        hidden: true,
+    },
+    {
+        path: '/401',
+        component: () => import('@/views/error/401.vue'),
+        hidden: true,
+    },
 
 ]
 
@@ -43,6 +44,14 @@ const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,
     routes
+})
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.length === 0) {
+        from.path ? next({name: from.name}) : next('/404')
+    } else {
+        next()
+    }
 })
 
 export default router
