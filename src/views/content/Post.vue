@@ -24,7 +24,7 @@
       <el-table-column label="观看量" prop="viewNum" :show-overflow-tooltip="true" align="center"/>
       <el-table-column label="点赞数" prop="likeNum" :show-overflow-tooltip="true" align="center"/>
       <el-table-column label="收藏数" prop="favoritesNum" :show-overflow-tooltip="true" align="center"/>
-      <el-table-column label="创建时间" prop="createTime" width="160" align="center"/>
+      <el-table-column label="发布时间" prop="createTime" width="160" align="center"/>
       <el-table-column label="操作" align="center" width="180" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button size="mini" type="text" circle icon="el-icon-edit" @click="handleUpdate(scope.row)">修改
