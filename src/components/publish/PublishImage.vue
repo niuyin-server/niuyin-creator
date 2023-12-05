@@ -256,7 +256,7 @@ export default {
       user: userInfoX().userInfo,
       loading: false,
       uploaderVisible: false,
-      videoUploadUrl: "/video/api/v1/upload/image",
+      videoUploadUrl: process.env.VUE_APP_DOMAIN_URL + "/video/api/v1/upload/image",
       headers: {
         Authorization: 'Bearer ' + getToken(),
       },
@@ -491,7 +491,7 @@ export default {
   position: relative;
   overflow: hidden;
 
-  .uploader-icon{
+  .uploader-icon {
     font-size: 28px;
     color: #8c939d;
     width: 100px;

@@ -57,7 +57,7 @@ export default {
     return {
       loading: false,
       uploaderVisible: false,
-      videoUploadUrl: "/video/api/v1/upload/image",
+      videoUploadUrl: process.env.VUE_APP_DOMAIN_URL + "/video/api/v1/upload/image",
       headers: {
         Authorization: 'Bearer ' + getToken(),
       },

@@ -1,6 +1,5 @@
 <template>
   <div class="publish-container">
-    <el-scrollbar>
       <el-tabs v-model="activeName" :stretch="true">
         <el-tab-pane v-for="(tab) in publishTypeTab"
                      :label="tab.tabName"
@@ -18,7 +17,6 @@
           <PublishQuanjing/>
         </div>
       </el-tabs>
-    </el-scrollbar>
   </div>
 </template>
 
@@ -51,7 +49,6 @@ export default {
 .publish-container {
   border-radius: 1rem;
   height: 100%;
-  padding-right: 1rem;
 }
 </style>
 

@@ -90,7 +90,7 @@ export default {
     return {
       videoFlag: false,
       loading: false,
-      videoUploadUrl: import.meta.env.VITE_API_BASE_URL + "/video/api/v1/upload",
+      videoUploadUrl: process.env.VUE_APP_DOMAIN_URL + "/video/api/v1/upload",
       headers: {
         Authorization: 'Bearer ' + getToken(),
       },

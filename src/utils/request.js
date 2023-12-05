@@ -4,7 +4,7 @@ import {getToken} from "@/utils/auth.js";
 import {MessageBox} from "element-ui";
 
 const instance = axios.create({
-    baseURL: "http://localhost:9090",
+    baseURL: process.env.VUE_APP_DOMAIN_URL,
     timeout: 20000,
 });
 
