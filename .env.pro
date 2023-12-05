@@ -1,3 +1,3 @@
-NODE_ENV = 'local'
+
 VUE_APP_ENV_MODE=pro
 VUE_APP_DOMAIN_URL=http://39.101.67.45:9090
