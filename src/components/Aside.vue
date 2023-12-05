@@ -27,8 +27,8 @@
           </router-link>
         </div>
         <el-menu class="el-menu-vertical"
-                 default-active="/"
                  router
+                 :default-active="$route.path"
                  @open="handleOpen"
                  @close="handleClose"
                  @select="handleSelect">
