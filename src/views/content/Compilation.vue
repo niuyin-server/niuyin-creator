@@ -44,7 +44,7 @@
     <el-pagination v-show="videoCompilationCount>0"
                    :total="videoCompilationCount"
                    background
-                   layout="prev, pager, next, sizes"
+                   layout="total, prev, pager, next, sizes"
                    :page-sizes="[10, 20]"
                    :current-page="videoCompilationPageDTO.pageNum"
                    :page-size="videoCompilationPageDTO.pageSize"

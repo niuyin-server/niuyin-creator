@@ -17,11 +17,9 @@
               <video v-if="videoForm.videoUrl !== '' && videoFlag === false"
                      :src="videoForm.videoUrl"
                      class="video"
-                     controls
-              ></video>
+                     controls/>
               <div v-else-if="videoForm.videoUrl === '' && videoFlag === false"
                    class="el-icon-plus video-uploader-icon">
-                <i class="el-icon-upload"></i>
               </div>
               <el-progress v-if="videoFlag === true"
                            type="circle"
@@ -95,7 +93,6 @@ export default {
         Authorization: 'Bearer ' + getToken(),
       },
       videoUploadPercent: undefined,
-
       videoForm: {
         publishType: '0',
         videoTitle: '',
@@ -112,10 +109,6 @@ export default {
         videoTitle: [
           {required: true, message: '请输入视频标题', trigger: 'blur'},
           {min: 1, max: 100, message: '长度在 1 到 100 个字符', trigger: 'blur'}
-        ],
-        videoDesc: [
-          {required: true, message: '请填写视频简介', trigger: 'blur'},
-          {min: 1, max: 200, message: '长度在 1 到 200 个字符', trigger: 'blur'}
         ]
       },
       // 视频标签对象

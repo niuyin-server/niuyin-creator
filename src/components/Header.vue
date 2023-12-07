@@ -31,7 +31,7 @@ export default {
   methods: {
     // 获取用户信息
     getUserInfo() {
-      if (this.user === null) {
+      if (this.user === null || this.user === undefined || this.user === "") {
         getInfo().then(res => {
           if (res.code === 200) {
             this.user = res.data

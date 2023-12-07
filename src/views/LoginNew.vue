@@ -97,7 +97,7 @@
 </template>
 <script>
 import {login} from "@/api/member.js";
-import {setToken} from "@/utils/auth.js";
+import {getToken, setToken} from "@/utils/auth.js";
 
 export default {
   name: "Login",
@@ -141,48 +141,31 @@ export default {
         if (valid) {
           login(this.loginForm.username, this.loginForm.password).then(res => {
             if (res.code === 200) {
-              // tokenX().setToken(res.data.token)
               setToken(res.data.token)
-              this.$message.success(res.msg)
               this.$router.push('/')
             } else {
               this.$message.error(res.msg)
             }
           })
-          // new Promise((resolve, reject) => {
-          //   userLogin(this.loginForm.username, this.loginForm.password).then(res => {
-          //     if (res.code === 200) {
-          //       // tokenX().setToken(res.data.token)
-          //       setToken(res.data.token)
-          //       this.$message.success(res.msg)
-          //       this.$router.push('/')
-          //       resolve()
-          //     } else {
-          //       this.$message.error(res.msg)
-          //     }
-          //   }).catch(error => {
-          //     reject(error)
-          //   })
-          // })
         }
       });
     },
     /** ========== 手机短信登录 ========== */
     getSmsCode() {
-      if (this.mobileCodeTimer > 0) return;
-      this.$refs.loginForm.validate(valid => {
-        if (!valid) return;
-        sendSmsCode(this.loginForm.telephone).then(res => {
-          // this.$modal.msgSuccess("获取验证码成功")
-          this.mobileCodeTimer = 60;
-          let msgTimer = setInterval(() => {
-            this.mobileCodeTimer = this.mobileCodeTimer - 1;
-            if (this.mobileCodeTimer <= 0) {
-              clearInterval(msgTimer);
-            }
-          }, 1000);
-        });
-      });
+      // if (this.mobileCodeTimer > 0) return;
+      // this.$refs.loginForm.validate(valid => {
+      //   if (!valid) return;
+      //   sendSmsCode(this.loginForm.telephone).then(res => {
+      //     // this.$modal.msgSuccess("获取验证码成功")
+      //     this.mobileCodeTimer = 60;
+      //     let msgTimer = setInterval(() => {
+      //       this.mobileCodeTimer = this.mobileCodeTimer - 1;
+      //       if (this.mobileCodeTimer <= 0) {
+      //         clearInterval(msgTimer);
+      //       }
+      //     }, 1000);
+      //   });
+      // });
     }
   },
   beforeDestroy() {

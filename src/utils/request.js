@@ -1,7 +1,7 @@
 import axios from 'axios'
 import errorCode from '@/utils/errorCode'
 import {getToken} from "@/utils/auth.js";
-import {MessageBox} from "element-ui";
+import {Message, MessageBox} from "element-ui";
 
 const instance = axios.create({
     baseURL: process.env.VUE_APP_DOMAIN_URL,
@@ -12,7 +12,7 @@ const instance = axios.create({
 instance.interceptors.request.use(config => {
     const token = getToken()
     if (token) {
-        config.headers.Authorization = 'Bearer ' + token
+        config.headers['Authorization'] = 'Bearer ' + getToken()
     }
     return config;
 }, error => {
@@ -46,10 +46,15 @@ instance.interceptors.response.use(res => {
             return Promise.reject(msg)
         }
     } else if (code === 500) {
-        this.$message(msg)
+        Message({
+            message: msg,
+            type: 'error'
+        })
         return Promise.reject(new Error(msg))
     } else if (code !== 200) {
-        this.$message(msg)
+        Notification.error({
+            title: msg
+        })
         return Promise.reject('error')
     } else {
         return res.data

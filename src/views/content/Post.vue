@@ -38,7 +38,7 @@
     <el-pagination v-show="videoCount>0"
                    :total="videoCount"
                    background
-                   layout="prev, pager, next, sizes"
+                   layout="total, prev, pager, next, sizes"
                    :page-sizes="[10, 20, 50]"
                    :current-page="videoPageDTO.pageNum"
                    :page-size="videoPageDTO.pageSize"
