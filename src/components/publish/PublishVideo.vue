@@ -88,8 +88,53 @@
               </el-upload>
             </div>
           </div>
-          <div>
+          <div class="flex-between">
             <p class="cg fs7">提示：优质的封面会极大增加同城曝光</p>
+            <el-popover
+                placement="right-end"
+                width="400"
+                trigger="hover">
+              <div class="cover-example">
+                <div class="flex-between mb5">
+                  <h4 class="mb5">优质封面示例</h4>
+                  <p class="fs7 cl-gold cp">制作技巧及示例 ></p>
+                </div>
+                <div class="success-example flex-between">
+                  <div v-for="item in successExample" class="w33" style="padding: 0 5px 5px" :key="item.id">
+                    <div class="tac">
+                      <img :src="item.cover" class="b-radius1" style="height: 120px;width: 80px"></div>
+                    <div>
+                      <div>
+                        <p class="two-line fs7">
+                          <svg class="icon1rem" aria-hidden="true">
+                            <use xlink:href="#icon-guide-success"></use>
+                          </svg>
+                          {{ item.title }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="fail-example flex-between">
+                  <div v-for="item in failExample" class="w33" style="padding: 0 5px 5px" :key="item.id">
+                    <div class="tac">
+                      <img :src="item.cover" class="b-radius1" style="height: 120px;width: 80px"></div>
+                    <div>
+                      <div>
+                        <p class="two-line fs7">
+                          <svg class="icon1rem" aria-hidden="true">
+                            <use xlink:href="#icon-guide-faild"></use>
+                          </svg>
+                          {{ item.title }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p slot="reference" class="fs8 fw500 cl-gold cp">优秀封面示例</p>
+              <!--              <el-button >click 激活</el-button>-->
+            </el-popover>
           </div>
         </div>
 
@@ -305,6 +350,40 @@ export default {
         'image/jpg',
         'image/jpeg',
         'image/webp',
+      ],
+      successExample: [
+        {
+          id: 1,
+          cover: "https://p3-pc-douyin-creator.byteimg.com/tos-cn-i-zomxhfrryo/tinified/img1.png~tplv-zomxhfrryo-0.png",
+          title: "画质清晰，建议分辨率不低于720p"
+        },
+        {
+          id: 2,
+          cover: "https://p3-pc-douyin-creator.byteimg.com/tos-cn-i-zomxhfrryo/tinified/img3.png~tplv-zomxhfrryo-0.png",
+          title: "有信息量，封面能反映视频主题"
+        },
+        {
+          id: 3,
+          cover: "https://p3-pc-douyin-creator.byteimg.com/tos-cn-i-zomxhfrryo/tinified/img5.png~tplv-zomxhfrryo-0.png",
+          title: "构图合理，协调美观，色彩适宜"
+        },
+      ],
+      failExample: [
+        {
+          id: 1,
+          cover: "https://p3-pc-douyin-creator.byteimg.com/tos-cn-i-zomxhfrryo/tinified/img13.png~tplv-zomxhfrryo-0.png",
+          title: "画质模糊，内容难以辨认"
+        },
+        {
+          id: 2,
+          cover: "https://p3-pc-douyin-creator.byteimg.com/tos-cn-i-zomxhfrryo/tinified/18.png~tplv-zomxhfrryo-0.png",
+          title: "信息量小，封面与视频关联性不强"
+        },
+        {
+          id: 3,
+          cover: "https://p3-pc-douyin-creator.byteimg.com/tos-cn-i-zomxhfrryo/tinified/20.png~tplv-zomxhfrryo-0.png",
+          title: "构图不当，展示不全，封面无美感"
+        },
       ],
     }
   },
