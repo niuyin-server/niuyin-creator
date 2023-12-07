@@ -332,3 +332,12 @@ html.dark {
   line-height: 28px;
   border-radius: 8px;
 }
+
+.el-textarea .el-input__count, .el-input .el-input__count .el-input__count-inner {
+  background-color: transparent;
+}
+
+.el-avatar > img {
+  width: 100%;
+  height: 100%;
+}

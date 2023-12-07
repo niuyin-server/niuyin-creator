@@ -99,6 +99,7 @@ export default {
           publishVideo(this.videoForm).then(res => {
             if (res.code === 200) {
               this.$message.success(res.msg)
+              this.$router.push('/content/post')
             }
           })
         } else {

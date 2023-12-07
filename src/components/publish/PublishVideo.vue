@@ -1,51 +1,27 @@
 <template>
-  <div class="p10px">
-    <el-form :model="videoForm" :rules="rules" ref="ruleForm" label-width="100px">
-      <el-row>
-        <el-col :lg="12" :xs="24">
-          <el-form-item label="上传视频" prop="videoUrl">
-            <!-- action必选参数, 上传的地址 -->
-            <el-upload class="video-uploader"
-                       :action="videoUploadUrl"
-                       :show-file-list="false"
-                       :headers="headers"
-                       :limit="1"
-                       v-loading="loading"
-                       :on-success="handleVideoSuccess"
-                       :before-upload="beforeUploadVideo"
-                       :on-progress="uploadVideoProcess">
-              <video v-if="videoForm.videoUrl !== '' && videoFlag === false"
-                     :src="videoForm.videoUrl"
-                     class="video"
-                     controls/>
-              <div v-else-if="videoForm.videoUrl === '' && videoFlag === false"
-                   class="el-icon-plus video-uploader-icon">
-              </div>
-              <el-progress v-if="videoFlag === true"
-                           type="circle"
-                           :percentage="videoUploadPercent"
-                           style="margin-top:30px;"></el-progress>
-
-            </el-upload>
-          </el-form-item>
-          <el-form-item label="视频封面" prop="coverImage" v-if="videoForm.coverImage">
-            <div>
-              <img v-if="videoForm.videoUrl !== '' && videoFlag === false"
-                   :src="videoForm.coverImage"
-                   class="video" alt=""/>
-            </div>
-          </el-form-item>
-        </el-col>
-        <el-col :lg="12" :xs="24">
-          <el-form-item label="视频标题" prop="videoTitle">
-            <el-input v-model="videoForm.videoTitle" maxlength="100" show-word-limit></el-input>
-          </el-form-item>
-          <el-form-item label="视频分类" prop="categoryId">
-            <el-radio-group v-model="videoForm.categoryId">
-              <el-radio-button :label="item.id" v-for="item in categoryList">{{ item.name }}</el-radio-button>
-            </el-radio-group>
-          </el-form-item>
-          <el-form-item label="视频标签" prop="videoTags">
+  <div class="" style="padding-bottom: 2rem" ref="ruleForm">
+    <div class="flex-between pr">
+      <div class="w50">
+        <div>
+          <h5>作品标题</h5>
+          <el-input class="mtb5"
+                    v-model="videoForm.videoTitle"
+                    type="text"
+                    maxlength="100"
+                    show-word-limit
+                    placeholder="添加标题"/>
+        </div>
+        <div class="mtb5">
+          <h5>作品简介</h5>
+          <el-input class="mtb5"
+                    type="textarea"
+                    maxlength="200"
+                    show-word-limit
+                    v-model="videoForm.videoDesc"/>
+        </div>
+        <div class="mtb5">
+          <h5>#添加标签</h5>
+          <div class="mtb5">
             <el-tag v-for="item in videoTags"
                     :key="item.tag"
                     class="mx-1 mr-5r"
@@ -59,36 +35,214 @@
                 v-if="tagInputVisible"
                 ref="RefTagInput"
                 v-model="tagInputValue"
-                class="ml-1 w100p"
+                class="ml-1 w100p mtb5"
                 @keyup.enter.native="handleInputConfirm"/>
-            <el-button v-else class="button-new-tag ml-1" v-show="tagBtn" size="small" @click="showTagInput">
+            <el-button v-else class="button-new-tag" v-show="tagBtn" size="small" @click="showTagInput">
               + 标签
             </el-button>
-          </el-form-item>
-          <el-form-item label="视频简介" prop="videoDesc">
-            <el-input type="textarea" v-model="videoForm.videoDesc" maxlength="200" show-word-limit></el-input>
-          </el-form-item>
-          <div style="text-align: center">
-            <el-button type="primary" @click="submitForm('ruleForm')">发布</el-button>
           </div>
-        </el-col>
-      </el-row>
-    </el-form>
+          <p class="cg fs7">提示：添加标签有助于后台进行筛选推送，最多支持添加5个标签</p>
+        </div>
+        <div class="mtb5">
+          <h5>封面设置</h5>
+          <div class="mtb5 grid-1-3">
+            <div class="w100">
+              <el-upload
+                  class="cover-uploader wh100"
+                  :action="coverImageUploadUrl"
+                  :headers="headers"
+                  :show-file-list="false"
+                  :limit="1"
+                  :on-success="handleCoverImageSuccess"
+                  :before-upload="beforeCoverImagerUpload">
+                <img v-if="videoForm.coverImage" :src="videoForm.coverImage" class="avatar" alt=""/>
+                <i v-else class="uploader-icon el-icon-plus"></i>
+              </el-upload>
+            </div>
+            <div class="upload-container w100">
+              <el-upload class="uploader"
+                         drag
+                         :show-file-list="false"
+                         :action="videoUploadUrl"
+                         :headers="headers"
+                         :limit="1"
+                         :disabled="!uploadVideoFlag"
+                         v-loading="loading"
+                         :on-success="handleVideoSuccess"
+                         :before-upload="beforeUploadVideo"
+                         :on-progress="uploadVideoProcess">
+                <div v-if="uploadVideoFlag">
+                  <i class="el-icon-upload"></i>
+                  <div class="el-upload__text">
+                    <div class="mtb5 fw600"><em>点击上传 或 将视频拖拽入此区域</em></div>
+                    <p class="cg fs8 two-line">
+                      为了更好的观看体验和平台安全，平台将对上传的视频预审。超过40秒的视频建议上传横版视频</p>
+                  </div>
+                </div>
+                <div v-else style="margin: 40px auto 0">
+                  <svg class="icon64" aria-hidden="true">
+                    <use xlink:href="#icon-guide-success"></use>
+                  </svg>
+                  <div class="mtb5 fw600"><em>上传成功</em></div>
+                </div>
+              </el-upload>
+            </div>
+          </div>
+          <div>
+            <p class="cg fs7">提示：优质的封面会极大增加同城曝光</p>
+          </div>
+        </div>
+
+        <div class="flex-between ptb10px">
+          <div class="w33 p10px">
+            <div class="upload-bg p1rem b-radius5">
+              <p class="mb5 fw600 one-line fs8">视频格式</p>
+              <p class="fs7 cg one-line">支持常用图片格式，暂不支持gif格式</p>
+            </div>
+          </div>
+          <div class="w33 p10px">
+            <div class="upload-bg p1rem b-radius5">
+              <p class="mb5 fw600 one-line fs8">视频大小</p>
+              <p class="fs7 cg one-line">图片大小不超过100MB</p>
+            </div>
+          </div>
+          <div class="w33 p10px">
+            <div class="upload-bg p1rem b-radius5">
+              <p class="mb5 fw600 one-line fs8">视频比例</p>
+              <p class="fs7 cg one-line">推荐视频分辨率1080p，画面比例16：9</p>
+            </div>
+          </div>
+        </div>
+        <div class="mtb5">
+          <h5>添加到</h5>
+          <div class="mtb5 flex-between">
+            <div class="w30 p5px">
+              <el-select class="w100" v-model="value" clearable placeholder="合集">
+                <el-option v-for="item in options"
+                           :key="item.value"
+                           :label="item.label"
+                           :value="item.value"/>
+              </el-select>
+            </div>
+            <div class="w70 p5px">
+              <el-select class="w100" v-model="value2" clearable placeholder="不选择合集">
+                <el-option v-for="item in options"
+                           :key="item.value"
+                           :label="item.label"
+                           :value="item.value"/>
+              </el-select>
+            </div>
+          </div>
+        </div>
+
+        <div class="mtb5">
+          <h3>发布设置</h3>
+          <el-divider/>
+          <div class="mtb5">
+            <h5>设置谁可以看</h5>
+            <el-radio-group class="mtb5" v-model="whoCanWatchId" size="small">
+              <el-radio-button :label="item.id" v-for="item in whoCanWatchList">{{ item.name }}</el-radio-button>
+            </el-radio-group>
+          </div>
+          <div class="mtb5">
+            <h5>发布时间</h5>
+            <el-radio-group class="mtb5" v-model="publishTimeType" size="small">
+              <el-radio-button :label="item.id" v-for="item in publishTimeTypeOptions">{{ item.name }}</el-radio-button>
+            </el-radio-group>
+          </div>
+          <div class="mtb5" v-if="publishTimeType==='1'">
+            <h5>选择发布时间</h5>
+            <el-date-picker
+                v-model="valueTime"
+                class="mtb5"
+                style="width: 100% !important;"
+                type="datetime"
+                placeholder="选择发布时间"
+                :picker-options="pickerOptions"/>
+          </div>
+        </div>
+        <div class="mtb5">
+          <el-button class="w100" type="primary" @click="submitForm">发布</el-button>
+        </div>
+      </div>
+      <!--    移动端回显-->
+      <div class="w50 flex-center">
+        <div class="flex-column">
+          <div class="mobile-preview flex-center">
+            <div class="phone-container oh flex-center">
+              <div class="phone-screen">
+                <div class="carousel-container">
+                  <!--                  内容区域-->
+                  <div class="carousel">
+                    <video v-if="videoForm.videoUrl !== ''"
+                           :src="videoForm.videoUrl"
+                           autoplay
+                           loop
+                           class="video"/>
+                  </div>
+                </div>
+                <img :src="user.avatar" class="avatar-class" alt=""/>
+                <img src="//lf-cdn-tos.bytescm.com/obj/static/douyin-creator-content/micro/imgs/out.052ae810.png"
+                     class="preview-card" alt=""/>
+                <img class="preview-like" src="@/assets/images/preview-like.png" alt=""/>
+                <div class="layer-top">
+                  <div class="bottom-binder">
+                    <div class="one-line fs7 fw500 flex-center">
+                      <span class="">@{{ user.nickName }}</span>
+                      <div class="flex-center">
+                        <i class="iconfont icon-pics ml5" style="font-size: 0.8rem;"></i>
+                        <span class="fs7 fw500">图文</span>
+                      </div>
+                    </div>
+                    <div id="phoneText" class="input-text--1URCd"><span><span></span></span></div>
+                    <div class="music-binder" style="display: flex;align-items: center">
+                      <img class="mr5" style="width: 16px;height: 16px;display: inline-block"
+                           src="@/assets/logo/logo-niuyin-new.png" alt="logo"/>
+                      <marquee class="fs5" style="display: inline-block">roydon创作的原声</marquee>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h5 class="mtb5">开启定位</h5>
+            <el-switch
+                v-model="videoForm.positionFlag"
+                active-value="1"
+                inactive-value="0"
+                active-color="#13ce66"
+                inactive-color="#ff4949">
+            </el-switch>
+          </div>
+          <div v-if="videoForm.positionFlag==='1'">
+            <h5 class="mtb5">选择定位</h5>
+            <!--            <MapView @emitSelectAddress="selectAddressEmit"/>-->
+            <p class="cg fs7 mtb5">提示：点击定位按钮进行定位，选择定位有助于同城推送</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import {getToken} from "@/utils/auth.js";
 import {publishVideo, saveVideoTag, videoCategory} from "@/api/video.js";
+import {userInfoX} from "@/store/userInfoX";
+// import MapView from "@/components/map/MapView.vue";
 
 export default {
   name: "PublishVideo",
   components: {},
   data() {
     return {
+      user: userInfoX().userInfo,
       videoFlag: false,
+      uploadVideoFlag: true, //是否可上传视频
       loading: false,
-      videoUploadUrl: process.env.VUE_APP_DOMAIN_URL + "/video/api/v1/upload",
+      videoUploadUrl: process.env.VUE_APP_DOMAIN_URL + "/creator/api/v1/upload-video",
+      coverImageUploadUrl: process.env.VUE_APP_DOMAIN_URL + "/creator/api/v1/upload-video-image",
       headers: {
         Authorization: 'Bearer ' + getToken(),
       },
@@ -120,7 +274,38 @@ export default {
       },
       tagInputVisible: false,
       tagInputValue: undefined,
-      tagBtn: true
+      tagBtn: true,
+      options: [
+        {
+          value: '1',
+          label: '合集'
+        }
+      ],
+      value: undefined,
+      value2: undefined,
+      whoCanWatchList: [
+        {id: '0', name: "公开可见"},
+        {id: '1', name: "仅好友可见"},
+        {id: '2', name: "仅自己可见"},
+      ],
+      whoCanWatchId: '0',
+      publishTimeTypeOptions: [
+        {id: '0', name: "立即发布"},
+        {id: '1', name: "定时发布"},
+      ],
+      publishTimeType: '0',
+      valueTime: undefined,
+      pickerOptions: {
+        disabledDate(time) {
+          return time.getTime() < Date.now() - (24 * 3600 * 1000)
+        }
+      },
+      supportImageType: [
+        'image/png',
+        'image/jpg',
+        'image/jpeg',
+        'image/webp',
+      ],
     }
   },
   created() {
@@ -134,19 +319,15 @@ export default {
         }
       })
     },
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          this.videoForm.videoTags = this.videoTagIds
-          publishVideo(this.videoForm).then(res => {
-            if (res.code === 200) {
-              this.$message.success(res.msg)
-            }
-          })
-        } else {
-          this.$message.error(res.msg)
+    submitForm() {
+      this.videoForm.videoTags = this.videoTagIds
+      publishVideo(this.videoForm).then(res => {
+        if (res.code === 200) {
+          this.$message.success(res.msg)
+          // todo 发布成功显示弹窗提示是否跳转到作品管理页面
+          this.$router.push('/content/post')
         }
-      });
+      })
     },
     // 验证视频格式
     beforeUploadVideo(file) {
@@ -175,10 +356,10 @@ export default {
       this.videoFlag = false
       this.videoUploadPercent = 0
       if (res.code === 200) {
-        // console.log(res.data)
         this.loading = false
-        this.videoForm.videoUrl = res.data.videoUrl
-        this.videoForm.coverImage = res.data.vframe
+        this.videoForm.videoUrl = res.data
+        this.videoForm.coverImage = res.data + "?x-oss-process=video/snapshot,t_1000,f_jpg,w_0,h_0,m_fast,ar_auto"
+        this.uploadVideoFlag = false
       } else {
         this.$message.error(res.msg)
       }
@@ -220,6 +401,23 @@ export default {
       this.videoTagIds.splice(this.videoTagIds.indexOf(item.tagId), 1)
       this.videoTags.splice(this.videoTags.indexOf(item), 1)
     },
+    // 上传封面
+    beforeCoverImagerUpload(file) {
+      if (this.supportImageType.indexOf(file.type) === -1) {
+        this.$message.error('请上传正确的图片格式')
+      }
+    },
+    // 封面上传成功
+    handleCoverImageSuccess(res, file) {
+      if (res.code === 200) {
+        this.loading = false
+        this.videoForm.coverImage = res.data
+      } else {
+        this.$message.error(res.msg)
+      }
+    },
+    handleRemove(file) {
+    },
 
   }
 
@@ -227,31 +425,151 @@ export default {
 </script>
 
 <style scoped>
-.video-uploader {
-  width: 100%;
+.mobile-preview {
+  height: 575px;
+}
 
-  .video-uploader-icon {
-    border: 2px dashed darkblue !important;
-    border-radius: 0.5rem;
-    font-size: 28px;
-    color: black;
-    width: 100%;
-    height: 100%;
-    line-height: 200px;
+.phone-container {
+  width: 270px;
+  height: auto;
+}
+
+.phone-screen {
+  position: absolute;
+  width: 243px;
+  height: 515px;
+  top: 10px;
+  z-index: 1;
+  background-color: black;
+  border-radius: 24px;
+}
+
+.avatar-class {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 235px;
+  right: 9px;
+  border-radius: 15px;
+  border: 1px solid grey;
+}
+
+.preview-card {
+  width: 243px;
+  height: 515px;
+  border-radius: 24px;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+
+.preview-like {
+  width: 243px;
+  height: 224px;
+  position: absolute;
+  top: 232px;
+  right: 5px;
+}
+
+.layer-top {
+  position: absolute;
+  bottom: 60px;
+  left: 10px;
+  color: white;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.preview-like {
+  width: 234px;
+  height: 224px;
+  position: absolute;
+  top: 238px;
+  right: 5px;
+}
+
+.cover-uploader {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  .uploader-icon {
+    font-size: 2rem;
+    color: #8c939d;
+    width: 100px;
+    height: 100px;
+    line-height: 180px;
     text-align: center;
   }
 
+  & img {
+    width: 100px;
+    height: 100px;
+  }
 }
 
-.video-uploader .el-upload:hover {
-  border: 2px dashed #d83f3f !important;
+.avatar-uploader .el-upload {
+  border: 1px dashed grey;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
-.video {
-  width: 320px;
-  height: 200px;
-  border-radius: 1rem;
+.avatar-uploader .el-upload:hover {
+  border-color: var(--el-color-primary);
+}
+
+:deep(.el-upload) {
+  height: 100%;
+}
+
+.avatar-uploader .avatar {
+  width: 100%;
+  height: 100%;
   display: block;
+}
+
+.carousel-container {
+  position: absolute;
+  width: 243px;
+  height: 458px;
+  padding: 0 5px;
+  top: 0;
+  z-index: -1;
+  overflow: hidden;
+  border-radius: 24px;
+
+  .carousel {
+    position: relative;
+    height: 100%;
+
+    .video {
+      position: absolute;
+      max-width: 100%;
+      max-height: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &:deep(.el-carousel) {
+      height: 100%;
+    }
+
+    &:deep(.el-carousel__container) {
+      height: 100% !important;
+    }
+
+    .carousel-item {
+
+    }
+  }
+
 }
 
 </style>

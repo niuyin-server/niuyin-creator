@@ -1,5 +1,5 @@
 <template>
-  <div class="" ref="ruleForm">
+  <div class="" style="padding-bottom: 2rem" ref="ruleForm">
     <div class="flex-between pr">
       <div class="w50">
         <div>
@@ -256,7 +256,7 @@ export default {
       user: userInfoX().userInfo,
       loading: false,
       uploaderVisible: false,
-      videoUploadUrl: process.env.VUE_APP_DOMAIN_URL + "/video/api/v1/upload/image",
+      videoUploadUrl: process.env.VUE_APP_DOMAIN_URL + "/creator/api/v1/upload-video-image",
       headers: {
         Authorization: 'Bearer ' + getToken(),
       },
@@ -328,6 +328,7 @@ export default {
       publishVideo(this.videoForm).then(res => {
         if (res.code === 200) {
           this.$message.success(res.msg)
+          this.$router.push('/content/post')
         }
       })
     },
