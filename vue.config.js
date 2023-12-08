@@ -20,4 +20,14 @@ module.exports = defineConfig({
     config.resolve.alias
         .set('@', resolve('src'))
   },
+  configureWebpack:{
+    devServer: {
+      // 解决页面弹出红色报错遮罩层
+      client: {
+        overlay: false,
+      },
+    },
+  }
+
+
 })
