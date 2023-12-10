@@ -341,3 +341,11 @@ html.dark {
   width: 100%;
   height: 100%;
 }
+
+.el-form-item {
+  margin-bottom: 16px;
+}
+
+.el-switch__core:after {
+  top: 1.5px;
+}

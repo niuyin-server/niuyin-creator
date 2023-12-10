@@ -46,7 +46,7 @@
         <div class="mtb5">
           <h5>封面设置</h5>
           <el-upload
-              class="cover-uploader"
+              class="cover-uploader mtb5"
               :action="videoUploadUrl"
               :headers="headers"
               :show-file-list="false"

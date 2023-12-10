@@ -159,27 +159,26 @@
           </div>
         </div>
         <div class="mtb5">
-          <h5>添加到</h5>
-          <div class="mtb5 flex-between">
-            <div class="w30 p5px">
-              <el-select class="w100" v-model="value" clearable placeholder="合集">
+          <h5>添加到合集</h5>
+          <div class="mtb5 grid-1-3">
+            <div class="">
+              <el-select class="w100" v-model="value" clearable default-first-option placeholder="合集">
                 <el-option v-for="item in options"
                            :key="item.value"
                            :label="item.label"
                            :value="item.value"/>
               </el-select>
             </div>
-            <div class="w70 p5px">
-              <el-select class="w100" v-model="value2" clearable placeholder="不选择合集">
-                <el-option v-for="item in options"
-                           :key="item.value"
-                           :label="item.label"
-                           :value="item.value"/>
+            <div class="">
+              <el-select class="w100" v-model="videoForm.compilationId" clearable placeholder="不选择合集">
+                <el-option v-for="item in videoCompilationOption"
+                           :key="item.compilationId"
+                           :label="item.title"
+                           :value="item.compilationId"/>
               </el-select>
             </div>
           </div>
         </div>
-
         <div class="mtb5">
           <h3>发布设置</h3>
           <el-divider/>
@@ -273,7 +272,8 @@
 
 <script>
 import {getToken} from "@/utils/auth.js";
-import {publishVideo, saveVideoTag, videoCategory} from "@/api/video.js";
+import {publishVideo, saveVideoTag, videoCategory} from "@/api/video";
+import {videoCompilationPage} from "@/api/creator";
 import {userInfoX} from "@/store/userInfoX";
 // import MapView from "@/components/map/MapView.vue";
 
@@ -302,6 +302,7 @@ export default {
         videoTags: [],
         positionFlag: '0',
         position: {},
+        compilationId: null, //视频合集id
       },
       categoryList: [],//视频分类集合
       rules: {
@@ -385,12 +386,21 @@ export default {
           title: "构图不当，展示不全，封面无美感"
         },
       ],
+      videoCompilationPageDTO: {
+        title: null,
+        pageNum: 1,
+        pageSize: 10
+      },
+      videoCompilationOption: [],
+      videoCompilationTotal: null,
     }
   },
   created() {
     this.getVideoCategory()
+    this.getUserVideoCompilations()
   },
   methods: {
+    // 获取视频分类
     getVideoCategory() {
       videoCategory().then(res => {
         if (res.code === 200) {
@@ -398,8 +408,19 @@ export default {
         }
       })
     },
+    // 获取用户视频合集
+    getUserVideoCompilations() {
+      videoCompilationPage(this.videoCompilationPageDTO).then(res => {
+        if (res.code === 200) {
+          this.videoCompilationOption = res.rows
+          this.videoCompilationTotal = res.total
+        }
+      })
+    },
+    // 确定发布视频
     submitForm() {
       this.videoForm.videoTags = this.videoTagIds
+      console.log(this.videoForm)
       publishVideo(this.videoForm).then(res => {
         if (res.code === 200) {
           this.$message.success(res.msg)

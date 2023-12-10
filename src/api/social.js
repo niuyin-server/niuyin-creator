@@ -24,3 +24,21 @@ export function followAndFans(userId) {
         method: 'get'
     })
 }
+
+// 分页查询我的关注
+export function userFollowPage(data) {
+    return request({
+        url: '/social/api/v1/follow/page',
+        method: 'post',
+        data: data
+    })
+}
+
+// 分页查询我的粉丝
+export function userFansPage(data) {
+    return request({
+        url: '/social/api/v1/follow/fans-page',
+        method: 'post',
+        data: data
+    })
+}
