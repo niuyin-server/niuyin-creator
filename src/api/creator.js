@@ -17,3 +17,11 @@ export function videoCompilationPage(data) {
         data: data
     })
 }
+
+// dashboardAmount
+export function dashboardAmount() {
+    return request({
+        url: '/creator/api/v1/dashboard-amount',
+        method: 'get'
+    })
+}

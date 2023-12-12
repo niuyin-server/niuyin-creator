@@ -568,6 +568,18 @@ a {
   grid-template-columns: 1fr 3fr;
 }
 
+.grid-2-8 {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 2fr 8fr;
+}
+
+.grid-8-2 {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 8fr 2fr;
+}
+
 .icon1rem {
   width: 1rem;
   height: 1rem;
@@ -643,4 +655,12 @@ div,
   color: gold;
   cursor: pointer;
   font-weight: 500;
+}
+
+.pd-href-rem {
+  padding: 0.5rem;
+}
+
+.brd-href-rem {
+  border-radius: .5rem;
 }

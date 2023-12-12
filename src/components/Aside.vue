@@ -94,11 +94,18 @@ export default {
           child: [
             {id: 21, name: "关注管理", class: "#icon-attention", link: "/interact/follow"},
             {id: 22, name: "粉丝管理", class: "#icon-fans", link: "/interact/fans"},
+            {id: 23, name: "评论管理", class: "#icon-fans", link: "/interact/comment"},
+          ]
+        },
+        {
+          id: 3, name: "数据中心", class: "#icon-data",
+          child: [
+            {id: 31, name: "经营分析", class: "#icon-operation", link: "/interact/follow"},
           ]
         },
       ],
       tabsBottomList: [
-        {id: 1, name: "商务合作", class: "icon-index", link: "/index"},
+        {id: 1, name: "商务合作", class: "#icon-index", link: "/index"},
       ],
     }
   },
