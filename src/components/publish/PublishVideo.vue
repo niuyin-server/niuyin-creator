@@ -343,7 +343,7 @@ export default {
       valueTime: undefined,
       pickerOptions: {
         disabledDate(time) {
-          return time.getTime() < Date.now() - (24 * 3600 * 1000)
+          return time.getTime() < Date.now() - (24 * 3600 * 1000) || time.getTime() > Date.now() + (7 * 24 * 3600 * 1000)
         }
       },
       supportImageType: [

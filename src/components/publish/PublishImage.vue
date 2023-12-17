@@ -148,13 +148,13 @@
           <el-divider/>
           <div class="mtb5">
             <h5>设置谁可以看</h5>
-            <el-radio-group class="mtb5" v-model="whoCanWatchId">
+            <el-radio-group class="mtb5" v-model="whoCanWatchId" size="small">
               <el-radio-button :label="item.id" v-for="item in whoCanWatchList">{{ item.name }}</el-radio-button>
             </el-radio-group>
           </div>
           <div class="mtb5">
             <h5>发布时间</h5>
-            <el-radio-group class="mtb5" v-model="publishTimeType">
+            <el-radio-group class="mtb5" v-model="publishTimeType" size="small">
               <el-radio-button :label="item.id" v-for="item in publishTimeTypeOptions">{{ item.name }}</el-radio-button>
             </el-radio-group>
           </div>
@@ -164,10 +164,7 @@
                 v-model="valueTime"
                 class="mtb5"
                 style="width: 100% !important;"
-                format="YYYY-MM-DD HH:mm:ss"
-                value-format="YYYY-MM-DD HH:mm:ss"
                 type="datetime"
-                :size="'large'"
                 placeholder="选择发布时间"
                 :picker-options="pickerOptions"
             />
@@ -316,7 +313,7 @@ export default {
       valueTime: undefined,
       pickerOptions: {
         disabledDate(time) {
-          return time.getTime() < Date.now() - (24 * 3600 * 1000)
+          return time.getTime() < Date.now() - (24 * 3600 * 1000) || time.getTime() > Date.now() + (7 * 24 * 3600 * 1000)
         }
       },
     }
