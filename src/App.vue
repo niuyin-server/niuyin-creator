@@ -1,8 +1,12 @@
 <template>
-  <div id="app">
+  <div id="app" class="app">
     <router-view/>
+    <el-backtop></el-backtop>
   </div>
 </template>
+
+<script>
+</script>
 
 <style>
 * {
