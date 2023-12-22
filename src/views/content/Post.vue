@@ -25,12 +25,21 @@
       <el-table-column label="点赞数" prop="likeNum" :show-overflow-tooltip="true" align="center"/>
       <el-table-column label="收藏数" prop="favoritesNum" :show-overflow-tooltip="true" align="center"/>
       <el-table-column label="发布时间" prop="createTime" width="160" align="center"/>
-      <el-table-column label="操作" align="center" width="180" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button size="mini" type="text" circle icon="el-icon-edit" @click="handleUpdate(scope.row)">修改
           </el-button>
-          <el-button size="mini" type="text" icon="el-icon-delete" @click="handleDelete(scope.row.videoId)">删除
-          </el-button>
+          <el-popconfirm
+              confirm-button-text='删除'
+              cancel-button-text='不用了'
+              icon="el-icon-info"
+              icon-color="red"
+              title="确定删除该作品吗？"
+              @confirm="handleDelVideo(scope.row.videoId)">
+            <el-button slot="reference" size="mini" type="text" icon="el-icon-delete"
+                       @click="handleDelete(scope.row.videoId)">删除
+            </el-button>
+          </el-popconfirm>
         </template>
       </el-table-column>
     </el-table>
@@ -49,6 +58,7 @@
 
 <script>
 import {videoPage} from "@/api/creator";
+import {deleteVideo} from "@/api/video";
 
 export default {
   name: 'Post',
@@ -113,8 +123,17 @@ export default {
     handleUpdate(row) {
 
     },
+    handleDelVideo(videoId) {
+      console.log(videoId)
+      deleteVideo(videoId).then(res =>{
+        if(res.code===200){
+          this.$message.success(res.msg)
+          this.initVideoPageList()
+        }
+      })
+    },
     handleDelete(videoId) {
-
+      // console.log(videoId)
     },
   }
 }

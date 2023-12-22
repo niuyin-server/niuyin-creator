@@ -98,12 +98,21 @@ export function memberInfoPage(data) {
         data: data
     })
 }
+
 // 创建视频合集
 export function createVideoCompilation(data) {
     return request({
         url: '/video/api/v1/userVideoCompilation',
         method: 'post',
         data: data
+    })
+}
+
+// 删除视频
+export function deleteVideo(videoId) {
+    return request({
+        url: '/video/api/v1/' + videoId,
+        method: 'DELETE'
     })
 }
 
