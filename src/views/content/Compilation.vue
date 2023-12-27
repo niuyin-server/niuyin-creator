@@ -51,8 +51,7 @@
                    @size-change="handleSizeChange"
                    @current-change="handleCurrentChange"/>
     <!-- 创建合集dialog -->
-    <el-dialog :title="createVideoCompilationDialogTitle" :visible.sync="createVideoCompilationDialogVisible"
-               width="800">
+    <el-dialog :title="createVideoCompilationDialogTitle" :visible.sync="createVideoCompilationDialogVisible" width="50%">
       <div>
         <el-form ref="createVideoCompilationForm" :model="createVideoCompilationDTO">
           <el-form-item>
