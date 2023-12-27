@@ -527,6 +527,9 @@ export default {
     handleRemove(file) {
     },
 
+  },
+  destroyed() {
+    this.videoForm = {}
   }
 
 }
