@@ -108,6 +108,15 @@ export function createVideoCompilation(data) {
     })
 }
 
+// 更新视频
+export function updateVideo(data) {
+    return request({
+        url: '/video/api/v1/update',
+        method: 'put',
+        data: data
+    })
+}
+
 // 删除视频
 export function deleteVideo(videoId) {
     return request({
