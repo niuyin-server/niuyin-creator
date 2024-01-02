@@ -51,7 +51,8 @@
                    @size-change="handleSizeChange"
                    @current-change="handleCurrentChange"/>
     <!-- 创建合集dialog -->
-    <el-dialog :title="createVideoCompilationDialogTitle" :visible.sync="createVideoCompilationDialogVisible" width="50%">
+    <el-dialog :title="createVideoCompilationDialogTitle" :visible.sync="createVideoCompilationDialogVisible"
+               width="50%">
       <div>
         <el-form ref="createVideoCompilationForm" :model="createVideoCompilationDTO">
           <el-form-item>
@@ -103,7 +104,7 @@
 -->
 <script>
 import {videoCompilationPage} from "@/api/creator";
-import {createVideoCompilation} from "@/api/video";
+import {createVideoCompilation, updateVideoCompilation} from "@/api/video";
 import {getToken} from "@/utils/auth";
 
 export default {
@@ -178,7 +179,12 @@ export default {
     },
     // 修改
     handleUpdate(row) {
-
+      this.createVideoCompilationDialogTitle = "更新视频合集"
+      this.createVideoCompilationDialogVisible = true
+      this.createVideoCompilationDTO.compilationId = row.compilationId
+      this.createVideoCompilationDTO.title = row.title
+      this.createVideoCompilationDTO.description = row.description
+      this.createVideoCompilationDTO.coverImage = row.coverImage
     },
     // 删除
     handleDelete(videoId) {
@@ -186,7 +192,9 @@ export default {
     },
     // 创建
     handleCreate() {
+      this.createVideoCompilationDialogTitle = "创建视频合集"
       this.createVideoCompilationDialogVisible = true
+      this.resetCreateVideoCompilationDTO()
     },
     // 上传封面
     beforeCoverImagerUpload(file) {
@@ -204,19 +212,33 @@ export default {
     },
     // 创建视频合集
     confirmCreateCompilation() {
-      console.log(this.createVideoCompilationDTO)
-      createVideoCompilation(this.createVideoCompilationDTO).then(res => {
-        if (res.code === 200) {
-          this.$message.success(res.msg)
-          this.createVideoCompilationDialogVisible = false
-          this.initVideoCompilationPageList()
-          this.createVideoCompilationDTO = {
-            title: null,
-            description: null,
-            coverImage: null,
+      if (this.createVideoCompilationDTO.compilationId == null) {
+        createVideoCompilation(this.createVideoCompilationDTO).then(res => {
+          if (res.code === 200) {
+            this.$message.success(res.msg)
+            this.createVideoCompilationDialogVisible = false
+            this.initVideoCompilationPageList()
+            this.resetCreateVideoCompilationDTO()
           }
-        }
-      })
+        })
+      } else {
+        updateVideoCompilation(this.createVideoCompilationDTO).then(res => {
+          if (res.code === 200) {
+            this.$message.success(res.msg)
+            this.createVideoCompilationDialogVisible = false
+            this.initVideoCompilationPageList()
+            this.resetCreateVideoCompilationDTO()
+          }
+        })
+      }
+
+    },
+    resetCreateVideoCompilationDTO() {
+      this.createVideoCompilationDTO = {
+        title: null,
+        description: null,
+        coverImage: null,
+      }
     },
   }
 }

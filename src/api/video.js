@@ -1,11 +1,11 @@
 import request from '@/utils/request'
 
 // 视频流-feed
-export function videoFeed(createTime) {
+export async function videoFeed(createTime) {
     const data = {
         createTime
     }
-    return request({
+    return await request({
         url: '/video/api/v1/feed',
         method: 'post',
         data: data
@@ -40,8 +40,8 @@ export function publishVideo(data) {
 }
 
 // 视频分类列表
-export function videoCategory() {
-    return request({
+export async function videoCategory() {
+    return await request({
         url: '/video/api/v1/category',
         method: 'get'
     })
@@ -66,8 +66,8 @@ export function hotVideoPage(data) {
 }
 
 // 用户视频点赞总数
-export function userLikeNums(userId) {
-    return request({
+export async function userLikeNums(userId) {
+    return await request({
         url: '/video/api/v1/likeNums/' + userId,
         method: 'get',
     })
@@ -83,8 +83,8 @@ export function saveVideoTag(data) {
 }
 
 // 我的作品数量
-export function myVideoCount() {
-    return request({
+export async function myVideoCount() {
+    return await request({
         url: '/video/api/v1/videoCount',
         method: 'get'
     })
@@ -122,6 +122,15 @@ export function deleteVideo(videoId) {
     return request({
         url: '/video/api/v1/' + videoId,
         method: 'DELETE'
+    })
+}
+
+// 更新视频合集
+export function updateVideoCompilation(data) {
+    return request({
+        url: '/video/api/v1/userVideoCompilation/update',
+        method: 'put',
+        data: data
     })
 }
 
