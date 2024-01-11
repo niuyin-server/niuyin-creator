@@ -58,7 +58,7 @@
       <div>
         <el-form ref="createVideoCompilationForm" :model="updateVideoDTO">
           <el-form-item>
-            <div>视频封面</div>
+            <h4>视频封面</h4>
             <el-upload
                 class="cover-uploader wh100"
                 :action="coverImageUploadUrl"
@@ -74,7 +74,7 @@
             </el-upload>
           </el-form-item>
           <el-form-item>
-            <div>视频合集名称</div>
+            <h4>视频标题</h4>
             <el-input v-model="updateVideoDTO.videoTitle"
                       placeholder="视频标题"
                       clearable
@@ -83,7 +83,7 @@
                       type="text"></el-input>
           </el-form-item>
           <el-form-item>
-            <div>视频合集描述</div>
+            <h4>视频描述</h4>
             <el-input v-model="updateVideoDTO.videoDesc"
                       placeholder="视频描述..."
                       clearable

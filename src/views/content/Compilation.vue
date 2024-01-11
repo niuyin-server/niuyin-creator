@@ -56,7 +56,7 @@
       <div>
         <el-form ref="createVideoCompilationForm" :model="createVideoCompilationDTO">
           <el-form-item>
-            <div>视频合集封面</div>
+            <h4>视频合集封面</h4>
             <el-upload
                 class="cover-uploader wh100"
                 :action="coverImageUploadUrl"
@@ -72,7 +72,7 @@
             </el-upload>
           </el-form-item>
           <el-form-item>
-            <div>视频合集名称</div>
+            <h4>视频合集名称</h4>
             <el-input v-model="createVideoCompilationDTO.title"
                       placeholder="收藏夹的名称"
                       clearable
@@ -81,7 +81,7 @@
                       type="text"></el-input>
           </el-form-item>
           <el-form-item>
-            <div>视频合集描述</div>
+            <h4>视频合集描述</h4>
             <el-input v-model="createVideoCompilationDTO.description"
                       placeholder="收藏夹的描述..."
                       clearable
@@ -246,24 +246,25 @@ export default {
 
 <style scoped>
 .cover-uploader {
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
+  border: 2px dashed #b5b5b5;
+  border-radius: 8px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  max-height: 300px;
 
   .uploader-icon {
-    font-size: 2rem;
+    font-size: 3rem;
     color: #8c939d;
-    width: 100px;
-    height: 100px;
-    line-height: 100px;
+    width: 100%;
+    height: 300px;
+    line-height: 300px;
     text-align: center;
   }
 
   & img {
-    width: 100px;
-    height: 100px;
+    max-height: 300px;
+    border-radius: .5rem;
   }
 }
 
