@@ -156,7 +156,7 @@
           <div class="w33 p10px">
             <div class="upload-bg p1rem b-radius5">
               <p class="mb5 fw600 one-line fs8">视频大小</p>
-              <p class="fs7 cg one-line">图片大小不超过100MB</p>
+              <p class="fs7 cg one-line">图片大小不超过200MB</p>
             </div>
           </div>
           <div class="w33 p10px">
@@ -219,7 +219,7 @@
       </div>
       <!--    移动端回显-->
       <div class="w50 flex-center">
-        <div class="flex-column">
+        <div class="flex-column" style="width: 80%">
           <div class="mobile-preview flex-center">
             <div class="phone-container oh flex-center">
               <div class="phone-screen">
@@ -269,7 +269,7 @@
           </div>
           <div v-if="videoForm.positionFlag==='1'">
             <h5 class="mtb5">选择定位</h5>
-            <!--            <MapView @emitSelectAddress="selectAddressEmit"/>-->
+            <MapView ref="map" @updateLocation="selectAddressEmit"/>
             <p class="cg fs7 mtb5">提示：点击定位按钮进行定位，选择定位有助于同城推送</p>
           </div>
         </div>
@@ -283,11 +283,11 @@ import {getToken} from "@/utils/auth.js";
 import {publishVideo, saveVideoTag, videoCategory} from "@/api/video";
 import {videoCompilationPage} from "@/api/creator";
 import {userInfoX} from "@/store/userInfoX";
-// import MapView from "@/components/map/MapView.vue";
+import MapView from "@/components/map/MapView.vue";
 
 export default {
   name: "PublishVideo",
-  components: {},
+  components: {MapView},
   data() {
     return {
       user: userInfoX().userInfo,
@@ -525,6 +525,10 @@ export default {
       }
     },
     handleRemove(file) {
+    },
+    // 定位结果
+    selectAddressEmit(address){
+      console.log(address)
     },
 
   },

@@ -32,7 +32,7 @@
         <div class="w33 p10px">
           <div class="upload-bg p1rem b-radius5">
             <p class="mb5 fw600">图片大小</p>
-            <p class="fs8 cg one-line">图片大小不超过10MB</p>
+            <p class="fs8 cg one-line">图片大小不超过5MB</p>
           </div>
         </div>
         <div class="w33 p10px">

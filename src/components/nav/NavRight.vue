@@ -47,8 +47,20 @@
       </el-popover>
     </div>
     <div class="user-container">
-      <el-avatar class="cp" v-if="user.avatar" :src="user.avatar"/>
-      <el-avatar class="cp" v-else icon="el-icon-user-solid" @click="handleToLogin"/>
+      <el-dropdown>
+        <div>
+          <el-avatar class="cp" v-if="user.avatar" :src="user.avatar"/>
+          <el-avatar class="cp" v-else icon="el-icon-user-solid" @click="handleToLogin"/>
+        </div>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>
+            <span>身份认证</span>
+          </el-dropdown-item>
+          <el-dropdown-item>
+            <span @click.stop="handleReturnLogin">退出登录</span>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
     </div>
   </div>
 </template>
@@ -146,8 +158,16 @@ export default {
       // this.initNotice()
     },
     handleToLogin() {
-      this.$router.push("login")
+      this.$router.push("/login")
     },
+    // 退出登录
+    handleReturnLogin() {
+      console.log("退出登录")
+      tokenX().removeToken()
+      userInfoX().removeUserInfo()
+      removeToken()
+      this.$router.push('/login');
+    }
   }
 }
 </script>

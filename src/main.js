@@ -15,6 +15,29 @@ Vue.use(PiniaVuePlugin)
 const pinia = createPinia()
 pinia.use(createPersistedState()) //开启缓存，存储在localstorage
 
+import AMap from 'vue-amap';
+Vue.use(AMap);
+// 初始化vue-amap
+AMap.initAMapApiLoader({
+  // 高德的key
+  key: '267b4c199024ffc545d85b93d24a09f1',
+  // 插件集合
+  plugin: [
+    'AMap.CircleEditor',// 圆形编辑器插件
+    "AMap.Geolocation", // 定位控件，用来获取和展示用户主机所在的经纬度位置
+    "AMap.Geocoder", // 地理编码与逆地理编码服务，用于地址描述与坐标间的相互转换
+    "AMap.Autocomplete",
+    "AMap.PlaceSearch",
+    "AMap.CitySearch",
+  ],
+  // 高德 sdk 版本，默认为 1.4.4
+  v: '1.4.4'
+});
+//高德的安全密钥
+window._AMapSecurityConfig = {
+  securityJsCode:'7e84f711a9dac457c627dccc92e01da6',
+}
+
 // 全局组件挂载
 Vue.component('Pagination', Pagination)
 
