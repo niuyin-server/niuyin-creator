@@ -527,8 +527,9 @@ export default {
     handleRemove(file) {
     },
     // 定位结果
-    selectAddressEmit(address){
+    selectAddressEmit(address) {
       console.log(address)
+      this.videoForm.videoForm = address
     },
 
   },
