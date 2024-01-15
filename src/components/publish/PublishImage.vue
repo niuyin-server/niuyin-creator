@@ -409,9 +409,10 @@ export default {
       this.videoTags.splice(this.videoTags.indexOf(item), 1)
     },
     // 接收子组件传递进来的定位地址数据
-    selectAddressEmit(val) {
-      this.videoForm.position = val
-    }
+    selectAddressEmit(address) {
+      console.log(address)
+      this.videoForm.videoForm = address
+    },
   }
 }
 </script>
