@@ -3,7 +3,7 @@
     <div class="flex-between pr">
       <div class="w50">
         <div>
-          <h5>作品标题</h5>
+          <h4>作品标题</h4>
           <el-input class="mtb5"
                     v-model="videoForm.videoTitle"
                     type="text"
@@ -12,7 +12,7 @@
                     placeholder="添加标题"/>
         </div>
         <div class="mtb5">
-          <h5>作品描述</h5>
+          <h4>作品描述</h4>
           <el-input class="mtb5"
                     type="textarea"
                     maxlength="200"
@@ -20,7 +20,7 @@
                     v-model="videoForm.videoDesc"/>
         </div>
         <div class="mtb5">
-          <h5>#添加标签</h5>
+          <h4>添加标签</h4>
           <div class="mtb5">
             <el-tag v-for="item in videoTags"
                     :key="item.tag"
@@ -44,7 +44,21 @@
           <p class="cg fs7">提示：添加标签有助于后台进行筛选推送，最多支持添加5个标签</p>
         </div>
         <div class="mtb5">
-          <h5>封面设置</h5>
+          <h4>选择分类</h4>
+          <div class="mtb5">
+            <el-cascader v-model="videoForm.categoryId"
+                         class="w100"
+                         :options="categoryList"
+                         clearable
+                         filterable
+                         :props="{label:'name',value:'id',children:'children',expandTrigger: 'hover' }"
+                         @change="handleVideoCategoryChange"
+                         placeholder="试试搜索：理学">
+            </el-cascader>
+          </div>
+        </div>
+        <div class="mtb5">
+          <h4>封面设置</h4>
           <el-upload
               class="cover-uploader mtb5"
               :action="videoUploadUrl"
@@ -102,7 +116,7 @@
           </div>
         </div>
         <div class="mtb5">
-          <h5>添加音乐</h5>
+          <h4>添加音乐</h4>
           <div class="mtb5">
             <div class="container flex-between p1rem b-radius5 fw600 fs8"
                  style="background-color: var(--niuyin-upload-bg);">
@@ -122,7 +136,7 @@
           </div>
         </div>
         <div class="mtb5">
-          <h5>添加到</h5>
+          <h4>添加到</h4>
           <div class="mtb5 flex-between">
             <div class="w30 p5px">
               <el-select class="w100" v-model="value" clearable placeholder="合集">
@@ -142,24 +156,23 @@
             </div>
           </div>
         </div>
-
         <div class="mtb5">
           <h3>发布设置</h3>
           <el-divider/>
           <div class="mtb5">
-            <h5>设置谁可以看</h5>
+            <h4>设置谁可以看</h4>
             <el-radio-group class="mtb5" v-model="whoCanWatchId" size="small">
               <el-radio-button :label="item.id" v-for="item in whoCanWatchList">{{ item.name }}</el-radio-button>
             </el-radio-group>
           </div>
           <div class="mtb5">
-            <h5>发布时间</h5>
+            <h4>发布时间</h4>
             <el-radio-group class="mtb5" v-model="publishTimeType" size="small">
               <el-radio-button :label="item.id" v-for="item in publishTimeTypeOptions">{{ item.name }}</el-radio-button>
             </el-radio-group>
           </div>
           <div class="mtb5" v-if="publishTimeType==='1'">
-            <h5>选择发布时间</h5>
+            <h4>选择发布时间</h4>
             <el-date-picker
                 v-model="valueTime"
                 class="mtb5"
@@ -227,7 +240,7 @@
           </div>
           <div v-if="videoForm.positionFlag==='1'">
             <h5 class="mtb5">选择定位</h5>
-            <MapView ref="map" @updateLocation="selectAddressEmit" />
+            <MapView ref="map" @updateLocation="selectAddressEmit"/>
             <p class="cg fs7 mtb5">提示：点击定位按钮进行定位，选择定位有助于同城推送</p>
           </div>
         </div>
@@ -241,9 +254,9 @@
 
 <script>
 import {getToken} from "@/utils/auth.js";
-import {publishVideo, saveVideoTag} from "@/api/video.js";
 import {userInfoX} from "@/store/userInfoX";
 import MapView from "@/components/map/MapView.vue";
+import {publishVideo, saveVideoTag, getVideoCategoryTree} from "@/api/video.js";
 
 export default {
   name: "PublishImage",
@@ -268,6 +281,7 @@ export default {
       tagInputVisible: false,
       tagInputValue: undefined,
       tagBtn: true,
+      categoryList: [],
       imageFileList: [],
       videoForm: {
         publishType: '1',
@@ -318,9 +332,27 @@ export default {
       },
     }
   },
+  created() {
+    this.initVideoCategoryTree()
+  },
   methods: {
+    // 初始化视频分类树
+    initVideoCategoryTree() {
+      getVideoCategoryTree().then(res => {
+        if (res.code === 200) {
+          this.categoryList = res.data
+        }
+      })
+    },
+    handleVideoCategoryChange(val) {
+      // console.log(val)
+    },
+    // 确认提交
     submitForm() {
       this.videoForm.videoTags = this.videoTagIds
+      if (this.videoForm.categoryId.length > 1) {
+        this.videoForm.categoryId = this.videoForm.categoryId[this.videoForm.categoryId.length - 1]
+      }
       console.log(this.videoForm)
       publishVideo(this.videoForm).then(res => {
         if (res.code === 200) {

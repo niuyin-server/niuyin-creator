@@ -134,3 +134,11 @@ export function updateVideoCompilation(data) {
     })
 }
 
+// 视频分类树
+export function getVideoCategoryTree() {
+    return request({
+        url: '/video/api/v1/category/tree',
+        method: 'get'
+    })
+}
+

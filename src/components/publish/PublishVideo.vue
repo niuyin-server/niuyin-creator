@@ -46,9 +46,14 @@
         <div class="mtb5">
           <h4>选择分类</h4>
           <div class="mtb5">
-            <el-radio-group v-model="videoForm.categoryId">
-              <el-radio-button :label="item.id" v-for="item in categoryList">{{ item.name }}</el-radio-button>
-            </el-radio-group>
+            <el-cascader v-model="videoForm.categoryId"
+                         class="w100"
+                         :options="categoryList"
+                         clearable
+                         filterable
+                         :props="{label:'name',value:'id',children:'children',expandTrigger: 'hover' }"
+                         placeholder="试试搜索：理学">
+            </el-cascader>
           </div>
         </div>
         <div class="mtb5">
@@ -280,7 +285,7 @@
 
 <script>
 import {getToken} from "@/utils/auth.js";
-import {publishVideo, saveVideoTag, videoCategory} from "@/api/video";
+import {getVideoCategoryTree, publishVideo, saveVideoTag, videoCategory} from "@/api/video";
 import {videoCompilationPage} from "@/api/creator";
 import {userInfoX} from "@/store/userInfoX";
 import MapView from "@/components/map/MapView.vue";
@@ -404,13 +409,13 @@ export default {
     }
   },
   created() {
-    this.getVideoCategory()
+    this.initVideoCategoryTree()
     this.getUserVideoCompilations()
   },
   methods: {
-    // 获取视频分类
-    getVideoCategory() {
-      videoCategory().then(res => {
+    // 初始化视频分类树
+    initVideoCategoryTree() {
+      getVideoCategoryTree().then(res => {
         if (res.code === 200) {
           this.categoryList = res.data
         }
@@ -428,6 +433,9 @@ export default {
     // 确定发布视频
     submitForm() {
       this.videoForm.videoTags = this.videoTagIds
+      if (this.videoForm.categoryId.length > 1) {
+        this.videoForm.categoryId = this.videoForm.categoryId[this.videoForm.categoryId.length - 1]
+      }
       console.log(this.videoForm)
       publishVideo(this.videoForm).then(res => {
         if (res.code === 200) {
