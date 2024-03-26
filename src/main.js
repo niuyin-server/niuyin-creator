@@ -20,7 +20,7 @@ Vue.use(AMap);
 // 初始化vue-amap
 AMap.initAMapApiLoader({
   // 高德的key
-  key: '267b4c199024ffc545d85b93d24a09f1',
+  key: '**',
   // 插件集合
   plugin: [
     'AMap.CircleEditor',// 圆形编辑器插件
@@ -35,7 +35,7 @@ AMap.initAMapApiLoader({
 });
 //高德的安全密钥
 window._AMapSecurityConfig = {
-  securityJsCode:'7e84f711a9dac457c627dccc92e01da6',
+  securityJsCode:'**',
 }
 
 // 全局组件挂载
