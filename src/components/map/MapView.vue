@@ -220,7 +220,7 @@ export default {
       this.addressResult.latitude = vm.dataForm.lat;
       this.addressResult.address = vm.dataForm.orgAddr;
       this.addressResult.adcode = vm.dataForm.adcode;
-      this.addressResult.province = vm.dataForm.orgAddr;
+      this.addressResult.province = vm.dataForm.province;
       this.addressResult.city = vm.dataForm.city;
       this.addressResult.cityCode = vm.dataForm.cityCode;
       this.addressResult.district = vm.dataForm.district;

@@ -139,6 +139,7 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
+          this.loading = true
           login(this.loginForm.username, this.loginForm.password).then(res => {
             if (res.code === 200) {
               setToken(res.data.token)
@@ -146,6 +147,7 @@ export default {
             } else {
               this.$message.error(res.msg)
             }
+            this.loading = false
           })
         }
       });

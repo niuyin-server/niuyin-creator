@@ -350,8 +350,10 @@ export default {
     // 确认提交
     submitForm() {
       this.videoForm.videoTags = this.videoTagIds
-      if (this.videoForm.categoryId.length > 1) {
-        this.videoForm.categoryId = this.videoForm.categoryId[this.videoForm.categoryId.length - 1]
+      if (this.videoForm.categoryId != null) {
+        if (this.videoForm.categoryId.length > 1) {
+          this.videoForm.categoryId = this.videoForm.categoryId[this.videoForm.categoryId.length - 1]
+        }
       }
       console.log(this.videoForm)
       publishVideo(this.videoForm).then(res => {
@@ -443,7 +445,7 @@ export default {
     // 接收子组件传递进来的定位地址数据
     selectAddressEmit(address) {
       console.log(address)
-      this.videoForm.videoForm = address
+      this.videoForm.position = address
     },
   }
 }
