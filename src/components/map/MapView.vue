@@ -240,7 +240,7 @@ export default {
 
 <style lang="scss" scoped>
 .amap-box {
-  height: 50vh;
+  height: 42vh;
   border-radius: 1rem;
   overflow: hidden;
 }

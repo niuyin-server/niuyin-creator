@@ -239,6 +239,8 @@
             </el-switch>
           </div>
           <div v-if="videoForm.positionFlag==='1'">
+            <h5 class="mtb5">已选地址</h5>
+            <el-input v-model="videoForm.position.address" disabled></el-input>
             <h5 class="mtb5">选择定位</h5>
             <MapView ref="map" @updateLocation="selectAddressEmit"/>
             <p class="cg fs7 mtb5">提示：点击定位按钮进行定位，选择定位有助于同城推送</p>
@@ -453,7 +455,7 @@ export default {
 
 <style scoped>
 .mobile-preview {
-  height: 575px;
+  height: 540px;
 }
 
 .phone-container {
