@@ -268,12 +268,12 @@ export default {
         {
           id: 1,
           title: '牛音创作服务平台·致力于全面的服务',
-          image: "https://lf6-cdn-tos.bytescm.com/obj/static/douyin_creator/fe/pc/static/image/default-banner.f2b92006.png"
+          image: "https://cdn.pixabay.com/photo/2023/08/21/03/34/droplets-8203505_640.jpg"
         },
         {
           id: 2,
           title: '牛音创作服务平台·致力于全面的服务',
-          image: "https://lf6-cdn-tos.bytescm.com/obj/static/douyin_creator/fe/pc/static/image/default-banner.f2b92006.png"
+          image: "https://cdn.pixabay.com/photo/2017/08/07/08/23/sea-2601374_640.jpg"
         }
       ],
       lineChartDataGather: {

@@ -76,7 +76,7 @@ export default {
   name: "Register",
   data() {
     return {
-      login:true,
+      login: true,
       registerForm: {
         username: "",
         password: "",
@@ -112,19 +112,19 @@ export default {
     handleRegister() {
       this.$refs.registerForm.validate((valid) => {
         if (valid) {
-              register({
-                username: this.registerForm.username,
-                password: this.registerForm.password,
-                confirmPassword: this.registerForm.confirmPassword
-              }).then(res => {
-                if (res.code != 200) {
-                  this.login = false
-                  this.$message.warning(res.msg)
-                } else {
-                  this.login = true
-                  this.$message.success(res.msg)
-                }
-              })
+          register({
+            username: this.registerForm.username,
+            password: this.registerForm.password,
+            confirmPassword: this.registerForm.confirmPassword
+          }).then(res => {
+            if (res.code != 200) {
+              this.login = false
+              this.$message.warning(res.msg)
+            } else {
+              this.login = true
+              this.$message.success(res.msg)
+            }
+          })
         }
       });
 
@@ -139,6 +139,28 @@ export default {
 
 <style scoped>
 @import "@/assets/styles/login-new.scss";
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .content {
+    padding: 1rem;
+    text-align: center;
+    width: 30vw;
+    min-width: 300px;
+    flex: 1;
+    margin: 0 auto;
+  }
+
+  .footer {
+    padding: 1rem;
+    text-align: center;
+  }
+
+}
 
 .oauth-login-item img {
   height: 25px;

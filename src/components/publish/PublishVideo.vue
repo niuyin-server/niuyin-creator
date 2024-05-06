@@ -73,17 +73,20 @@
               </el-upload>
             </div>
             <div class="upload-container w100">
-              <el-upload class="uploader"
-                         drag
-                         :show-file-list="false"
-                         :action="videoUploadUrl"
-                         :headers="headers"
-                         :limit="1"
-                         :disabled="!uploadVideoFlag"
-                         v-loading="loading"
-                         :on-success="handleVideoSuccess"
-                         :before-upload="beforeUploadVideo"
-                         :on-progress="uploadVideoProcess">
+              <el-upload
+                  v-if="uploadVideoFlag"
+                  class="uploader"
+                  drag
+                  :show-file-list="false"
+                  :action="videoUploadUrl"
+                  :headers="headers"
+                  id="video"
+                  :limit="1"
+                  :disabled="!uploadVideoFlag"
+                  v-loading="loading"
+                  :on-success="handleVideoSuccess"
+                  :before-upload="beforeUploadVideo"
+                  :on-progress="uploadVideoProcess">
                 <div v-if="uploadVideoFlag">
                   <i class="el-icon-upload"></i>
                   <div class="el-upload__text">
@@ -99,6 +102,34 @@
                   <div class="mtb5 fw600"><em>上传成功</em></div>
                 </div>
               </el-upload>
+              <div v-else>
+                <div class="mtb5 fw600">
+                  <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-guide-success"></use>
+                  </svg>
+                  <em>上传成功，封面选择</em>
+
+                </div>
+                <div class="recommend-cover-chose">
+                  <div class="recommend-cover-item" v-for="item in videoCoverChoseList"
+                       @click="handleChoseRecommendCover(item)">
+                    <el-popover :width="300" trigger="hover">
+                      <template #reference>
+                        <img :src="item" alt="cover">
+                        <svg v-if="videoForm.coverImage===item" class="icon chose-svg" aria-hidden="true">
+                          <use xlink:href="#icon-chose"></use>
+                        </svg>
+                      </template>
+                      <template #default>
+                        <div class="pop-cover">
+                          <img class="cover" :src="item" alt="_">
+                        </div>
+                      </template>
+                    </el-popover>
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
           <div class="flex-between">
@@ -408,6 +439,9 @@ export default {
       },
       videoCompilationOption: [],
       videoCompilationTotal: null,
+      videoDurationSeconds: 0,
+      recommendCoverPrefix: "",
+      videoCoverChoseList: [],
     }
   },
   created() {
@@ -463,26 +497,73 @@ export default {
         this.$message.error('请上传正确的视频格式')
         return false
       }
+      // let url = URL.createObjectURL(file);
+      // let audioElement = new Audio(url);
+      // let duration;
+      // audioElement.addEventListener("loadedmetadata", function () {
+      //   duration = parseInt(audioElement.duration); //时长为秒，取整
+      //   // console.log(duration);
+      //   this.videoDurationSeconds = duration
+      //   console.log(this.videoDurationSeconds)
+      //   return;
+      // });
     },
     // 上传进度显示
     uploadVideoProcess(event, file, fileList) {
-      console.log(event.percent, file, fileList)
+      // console.log(event.percent, file, fileList)
       this.videoFlag = true
       this.loading = true
       this.videoUploadPercent = Math.floor(event.percent)
     },
     // 获取上传地址
     handleVideoSuccess(res, file) {
+      // console.log(file)
       this.videoFlag = false
       this.videoUploadPercent = 0
       if (res.code === 200) {
         this.loading = false
         this.videoForm.videoUrl = res.data
         this.videoForm.coverImage = res.data + "?x-oss-process=video/snapshot,t_1000,f_jpg,w_0,h_0,m_fast,ar_auto"
+        this.recommendCoverPrefix = res.data
         this.uploadVideoFlag = false
+        // 生成推荐封面
+        let url = URL.createObjectURL(file.raw);
+        let audioElement = new Audio(url);
+        let duration;
+        audioElement.addEventListener("loadedmetadata", () => {
+          duration = parseInt(audioElement.duration); //时长为秒
+          // console.log(duration);
+          this.videoDurationSeconds = duration
+          const number = this.splitNumber(duration * 1000);
+          console.log(number)
+          number.forEach(n => {
+            this.videoCoverChoseList.push(this.recommendCoverPrefix + "?x-oss-process=video/snapshot,t_" + n + ",f_jpg,w_0,h_0,m_fast,ar_auto")
+          })
+        });
+        audioElement.removeEventListener("loadedmetadata", this.handleVideoSuccess);
+        // this.getRecommendVideoCover(duration)
       } else {
         this.$message.error(res.msg)
       }
+    },
+    splitNumber(n) {
+      // 头尾两端
+      let segmentStart = 1;
+      let segmentEnd = n;
+      let segment1 = Math.floor(n / 4)
+      let segment2 = segment1 * 2
+      let segment3 = segment1 * 3
+      // // 计算中间两段
+      // let midSegment1, midSegment2;
+      // if (n % 2 === 0) {  // n是偶数
+      //   midSegment1 = n / 3;
+      //   midSegment2 = midSegment1;
+      // } else {  // n是奇数
+      //   midSegment1 = Math.floor((n - 1) / 2);  // 略小于中间的整数
+      //   midSegment2 = midSegment1 + 1;  // 略大于中间的整数
+      // }
+
+      return [segmentStart, segment1, segment2, segment3, segmentEnd];
     },
     // 添加视频标签
     handleInputConfirm() {
@@ -543,6 +624,11 @@ export default {
       console.log(address)
       this.videoForm.position = address
     },
+    handleChoseRecommendCover(item) {
+      console.log(item)
+      this.videoForm.coverImage = item
+
+    }
 
   },
   destroyed() {
@@ -628,15 +714,16 @@ export default {
   .uploader-icon {
     font-size: 2rem;
     color: #8c939d;
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
     line-height: 180px;
     text-align: center;
   }
 
   & img {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
@@ -699,5 +786,47 @@ export default {
   }
 
 }
+
+.recommend-cover-chose {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  .recommend-cover-item {
+    position: relative;
+    border-radius: .5rem;
+    overflow: hidden;
+    display: flex;
+    padding: .5rem;
+    cursor: pointer;
+    align-items: center;
+
+    & img {
+      vertical-align: middle;
+      border-radius: .5rem;
+      border-style: none;
+      width: 100%;
+    }
+
+    .chose-svg {
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+    }
+  }
+}
+
+.pop-cover {
+
+  .cover {
+    max-height: 600px;
+    vertical-align: middle;
+    border-radius: .5rem;
+    border-style: none;
+    width: 100%;
+  }
+}
+
 
 </style>

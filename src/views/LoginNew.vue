@@ -188,6 +188,7 @@ export default {
   background-size: cover;
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 14px;

@@ -529,15 +529,15 @@ export default {
   .uploader-icon {
     font-size: 28px;
     color: #8c939d;
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
     line-height: 100px;
     text-align: center;
   }
 
   & img {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
   }
 }
 
