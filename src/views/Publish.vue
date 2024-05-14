@@ -13,9 +13,9 @@
         <div v-if="activeName==='1'">
           <PublishImage/>
         </div>
-        <div v-if="activeName==='2'">
-          <PublishQuanjing/>
-        </div>
+<!--        <div v-if="activeName==='2'">-->
+<!--          <PublishQuanjing/>-->
+<!--        </div>-->
       </el-tabs>
   </div>
 </template>
@@ -33,7 +33,7 @@ export default {
       publishTypeTab: [
         {id: 1, tabName: "发布视频", tabVal: '0'},
         {id: 2, tabName: "发布图文", tabVal: '1'},
-        {id: 3, tabName: "发布全景视频", tabVal: '2'},
+        // {id: 3, tabName: "发布全景视频", tabVal: '2'},
       ],
       activeName: '0',
     };

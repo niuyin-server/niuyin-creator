@@ -294,7 +294,7 @@ export default {
         categoryId: undefined,
         videoTags: [],
         imageFileList: [],
-        positionFlag: '1',
+        positionFlag: '0',
         position: {},
       },
       imageLimit: 10, // 限制上传个数

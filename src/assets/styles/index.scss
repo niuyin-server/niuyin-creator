@@ -2,8 +2,17 @@ $light-bg-image: "@/assets/background/theme-light.jpg";
 $dark-bg-image: "@/assets/background/theme-dark.jpg";
 
 .niuyin {
-  background-image: url($light-bg-image);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  //background-image: url($light-bg-image);
+  //background-position: center;
+  //background-repeat: no-repeat;
+  //background-size: cover;
 }
+
+.bg-mask {
+  width: 100vw;
+  height: 100vh;
+  background: no-repeat var(--global-bg-img) var(--color-bg-b0);
+  position: fixed;
+  z-index: -1;
+}
+

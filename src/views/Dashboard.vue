@@ -45,7 +45,7 @@
         <el-card class="mb1rem">
           <h4 class="mb5">新的创作</h4>
           <div class="flex-between">
-            <div class="w33 plr10px cp">
+            <div class="w50 plr10px cp">
               <router-link to="/publish" tag="div">
                 <div class="upload-bg p1rem b-radius5 df">
                   <div class="flex-center">
@@ -60,7 +60,7 @@
                 </div>
               </router-link>
             </div>
-            <div class="w33 plr10px cp">
+            <div class="w50 plr10px cp">
               <router-link to="/publish" tag="div">
                 <div class="upload-bg p1rem b-radius5 df">
                   <div class="flex-center">
@@ -75,21 +75,21 @@
                 </div>
               </router-link>
             </div>
-            <div class="w33 plr10px cp">
-              <router-link to="/publish" tag="div">
-                <div class="upload-bg p1rem b-radius5 df">
-                  <div class="flex-center">
-                    <svg class="icon32" aria-hidden="true">
-                      <use xlink:href="#icon-panoramic"></use>
-                    </svg>
-                  </div>
-                  <div class="ml-5r">
-                    <p class="fs9 mb5 fw600">发布全景视频</p>
-                    <p class="fs8 cg one-line">推荐分辨率为4K (3840x1920) 及以上</p>
-                  </div>
-                </div>
-              </router-link>
-            </div>
+            <!--            <div class="w33 plr10px cp">-->
+            <!--              <router-link to="/publish" tag="div">-->
+            <!--                <div class="upload-bg p1rem b-radius5 df">-->
+            <!--                  <div class="flex-center">-->
+            <!--                    <svg class="icon32" aria-hidden="true">-->
+            <!--                      <use xlink:href="#icon-panoramic"></use>-->
+            <!--                    </svg>-->
+            <!--                  </div>-->
+            <!--                  <div class="ml-5r">-->
+            <!--                    <p class="fs9 mb5 fw600">发布全景视频</p>-->
+            <!--                    <p class="fs8 cg one-line">推荐分辨率为4K (3840x1920) 及以上</p>-->
+            <!--                  </div>-->
+            <!--                </div>-->
+            <!--              </router-link>-->
+            <!--            </div>-->
           </div>
         </el-card>
         <!--    数据中心-->
@@ -153,32 +153,32 @@
           </div>
         </el-card>
         <!--    收入概况-->
-        <el-card class="mb1rem">
-          <div class="flex-between mb5">
-            <div class="flex-start">
-              <h4>收入概况</h4>
-              <div class="ml-5r fs8 cp">
-                <i class="el-icon-view"></i>
-              </div>
-            </div>
-            <div class="fs8 cp cg">查看详情 ></div>
-          </div>
-          <div class="flex-between">
-            <div v-for="item in 3" class="w33" style="padding: 0 4px 8px">
-              <div class="pd-href-rem brd-href-rem upload-bg">
-                <div class="flex-column">
-                  <h6 class="mb5">
-                    <span>昨日</span><span class="ml-5r">12-8</span>
-                  </h6>
-                </div>
-                <div class="flex-start">
-                  <h6>￥</h6>
-                  <h4>0.00</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-        </el-card>
+        <!--        <el-card class="mb1rem">-->
+        <!--          <div class="flex-between mb5">-->
+        <!--            <div class="flex-start">-->
+        <!--              <h4>收入概况</h4>-->
+        <!--              <div class="ml-5r fs8 cp">-->
+        <!--                <i class="el-icon-view"></i>-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--            <div class="fs8 cp cg">查看详情 ></div>-->
+        <!--          </div>-->
+        <!--          <div class="flex-between">-->
+        <!--            <div v-for="item in 3" class="w33" style="padding: 0 4px 8px">-->
+        <!--              <div class="pd-href-rem brd-href-rem upload-bg">-->
+        <!--                <div class="flex-column">-->
+        <!--                  <h6 class="mb5">-->
+        <!--                    <span>昨日</span><span class="ml-5r">12-8</span>-->
+        <!--                  </h6>-->
+        <!--                </div>-->
+        <!--                <div class="flex-start">-->
+        <!--                  <h6>￥</h6>-->
+        <!--                  <h4>0.00</h4>-->
+        <!--                </div>-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </el-card>-->
         <!--    创作中心-->
         <el-card class="mb1rem">
           <div class="flex-between mb5">
@@ -190,16 +190,16 @@
             </div>
             <!--            <div class="fs8 cp cg">查看详情 ></div>-->
           </div>
-          <div class="flex-between">
-            <div v-for="item in 3" class="w33" style="padding: 0 4px 8px">
-              <div class="pd-href-rem brd-href-rem">
-                <el-tabs v-model="activeName" @tab-click="handleTabClick">
-                  <el-tab-pane label="用户管理" name="first">用户管理</el-tab-pane>
-                  <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
-                </el-tabs>
-              </div>
-            </div>
-          </div>
+          <!--          <div class="flex-between">-->
+          <!--            <div v-for="item in 3" class="w33" style="padding: 0 4px 8px">-->
+          <!--              <div class="pd-href-rem brd-href-rem">-->
+          <!--                <el-tabs v-model="activeName" @tab-click="handleTabClick">-->
+          <!--                  <el-tab-pane label="用户管理" name="first">用户管理</el-tab-pane>-->
+          <!--                  <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>-->
+          <!--                </el-tabs>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
         </el-card>
       </div>
       <div>
@@ -248,6 +248,7 @@ import RaddarChart from '@/components/dashboard/RaddarChart'
 import PieChart from '@/components/dashboard/PieChart'
 import BarChart from '@/components/dashboard/BarChart'
 import {dashboardAmount} from "@/api/creator";
+import {getInfo} from "@/api/member";
 
 export default {
   name: 'Dashboard',
@@ -303,16 +304,26 @@ export default {
   },
   created() {
     this.roydonLog()
-    this.getUserFollowFansLike()
-    this.initDashboardAmount()
-  }
-  ,
+  },
   mounted() {
-  }
-  ,
+    this.getUserInfo()
+    // this.getUserFollowFansLike()
+    this.initDashboardAmount()
+  },
   methods: {
     parseTime,
+    // 获取用户信息
+    getUserInfo() {
+      getInfo().then(res => {
+        if (res.code === 200) {
+          this.user = res.data
+          this.getUserFollowFansLike()
+          // userInfoX().setUserInfo(res.data)
+        }
+      })
+    },
     getUserFollowFansLike() {
+      console.log(this.user)
       // 查询关注、粉丝
       followAndFans(this.user.userId).then(res => {
         if (res.code === 200) {
@@ -326,8 +337,7 @@ export default {
           this.likeAllNum = res.data
         }
       })
-    }
-    ,
+    },
     initDashboardAmount() {
       dashboardAmount().then(res => {
         if (res.code === 200) {
