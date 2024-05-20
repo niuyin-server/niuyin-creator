@@ -14,7 +14,7 @@
               <span class="fs9 fw600">{{ user.nickName }}</span>
               <span class="fs8 link-gold ml2rem">发起授权</span></div>
             <div class="divide-grey">
-              <span class="fs8">牛音号：</span>
+              <span class="fs8">芝士号：</span>
               <span class="fs8">{{ user.userId }}</span>
             </div>
             <div class="">
@@ -213,7 +213,7 @@
               </el-carousel-item>
             </el-carousel>
           </div>
-          <div class="one-line fs8 fw500">牛音创作服务平台·致力于全面的服务</div>
+          <div class="one-line fs8 fw500">芝士创作服务平台·致力于全面的服务</div>
         </el-card>
         <!--          活动中心-->
         <el-card class="mb1rem">
@@ -268,12 +268,12 @@ export default {
       culItem: [
         {
           id: 1,
-          title: '牛音创作服务平台·致力于全面的服务',
+          title: '芝士创作服务平台·致力于全面的服务',
           image: "https://cdn.pixabay.com/photo/2023/08/21/03/34/droplets-8203505_640.jpg"
         },
         {
           id: 2,
-          title: '牛音创作服务平台·致力于全面的服务',
+          title: '芝士创作服务平台·致力于全面的服务',
           image: "https://cdn.pixabay.com/photo/2017/08/07/08/23/sea-2601374_640.jpg"
         }
       ],

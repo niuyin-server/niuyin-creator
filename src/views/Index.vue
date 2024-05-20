@@ -23,7 +23,7 @@ export default {
   components: {Aside, Header},
   data() {
     return {
-      siteTitle: "牛音创作者中心",
+      siteTitle: "芝士创作中心",
       videoUrl: undefined,
       niuyinTheme: "niuyin-light",
     }

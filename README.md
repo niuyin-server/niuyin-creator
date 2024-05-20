@@ -1,14 +1,15 @@
 # niuyin-creator
 
-牛音创作者平台
+芝士创作平台
+cheese
 
 
 # 运行效果
 
-创作者中心首页
+创作中心首页
 
 ![niuyincreatorindex.png](docs/images/niuyin-creator-index.png)
 
-创作者中心作品管理
+创作中心作品管理
 
 ![niuyincreatorpost.png](docs/images/niuyin-creator-post.png)

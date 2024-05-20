@@ -468,6 +468,23 @@ export default {
     },
     // 确定发布视频
     submitForm() {
+      // 验证表单
+      if (this.videoForm.videoTitle == null || this.videoForm.videoTitle === "") {
+        this.$message.error("请输入视频标题")
+        return;
+      }
+      if (this.videoForm.coverImage == null || this.videoForm.coverImage === "") {
+        this.$message.error("请上传视频封面")
+        return;
+      }
+      if (this.videoForm.videoUrl == null || this.videoForm.videoUrl === "") {
+        this.$message.error("必须上传视频！")
+        return;
+      }
+      if (this.videoForm.positionFlag === '1' && this.videoForm.position == null) {
+        this.$message.error("你未选择发布地址，请关闭定位发布或选择发布地址！")
+        return;
+      }
       this.videoForm.videoTags = this.videoTagIds
       if (this.videoForm.categoryId != null) {
         if (this.videoForm.categoryId.length > 1) {
